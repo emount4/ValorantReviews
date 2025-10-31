@@ -216,3 +216,84 @@ class CRUD:
             return {"status": "success"}
         except Exception as e:
             return {"status": "error", "message": f"validation error:{str(e)}"}
+
+    def delete_data(self, table_name: str, data: Dict[str, Any]) -> Dict[str, Any]:
+        if not self.db.is_connected():
+            self.db.connect()
+        try:
+            schema_info = self.get_table_schema(table_name)
+            if schema_info["status"] != "success":
+                return {"status": "error", "message": f"Table {table_name} not found: {schema_info['message']}"}
+
+            # Валидация данных для удаления
+            available_columns = list(schema_info["schema"].keys())
+            for column_name in data.keys():
+                if column_name not in available_columns:
+                    return {
+                        "status": "error",
+                        "message": f"Column '{column_name}' does not exist in table '{table_name}'. Available columns: {available_columns}"
+                    }
+
+            from sqlalchemy import Table, delete
+
+            table = Table(table_name, self.db.metadata, autoload_with=self.db.engine)
+
+            # Создаем условие WHERE для всех переданных пар ключ-значение
+            where_conditions = []
+            for column, value in data.items():
+                where_conditions.append(table.c[column] == value)
+
+            stmt = delete(table).where(*where_conditions)
+
+            with self.db.engine.begin() as connection:
+                result = connection.execute(stmt)
+
+            if result.rowcount == 0:
+                return {
+                    "status": "error",
+                    "message": "No rows found matching the criteria"
+                }
+
+            return {
+                "status": "success",
+                "message": f"Successfully deleted {result.rowcount} row(s) from {table_name}",
+                "deleted_count": result.rowcount
+            }
+
+        except Exception as e:
+            return {"status": "error", "message": f"Delete data error: {str(e)}"}
+
+    def get_row_count(self, table_name: str, where_conditions: Dict[str, Any] = None) -> Dict[str, Any]:
+        """Получить количество строк в таблице (с опциональными условиями)"""
+        if not self.db.is_connected():
+            self.db.connect()
+        try:
+            from sqlalchemy import Table, select, func
+
+            table = Table(table_name, self.db.metadata, autoload_with=self.db.engine)
+
+            # Базовый запрос COUNT(*)
+            stmt = select(func.count()).select_from(table)
+
+            # Добавляем условия WHERE если они есть
+            if where_conditions:
+                where_clauses = []
+                for column, value in where_conditions.items():
+                    where_clauses.append(table.c[column] == value)
+                stmt = stmt.where(*where_clauses)
+
+            with self.db.engine.begin() as connection:
+                result = connection.execute(stmt)
+                count = result.scalar()
+
+            return {
+                "status": "success",
+                "table_name": table_name,
+                "row_count": count,
+                "has_conditions": where_conditions is not None,
+                "conditions": where_conditions if where_conditions else "all rows"
+            }
+
+        except Exception as e:
+            return {"status": "error", "message": f"Row count error: {str(e)}"}
+
