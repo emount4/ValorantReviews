@@ -1,0 +1,32 @@
+:root {
+  /* Основная палитра */
+  --primary-accent: #ff4654;    /* Основной акцентный цвет */
+  --dark-background: #111c26;   /* Темный фон */
+  --light-text: #eae5da;        /* Светлый текст */
+  
+  /* Дополнительные цвета на основе основной палитры */
+  --primary-hover: #ff6877;     /* Акцент при наведении */
+  --primary-dark: #e63e4d;      /* Темный акцент */
+  --dark-surface: #1a242f;      /* Темные поверхности */
+  --dark-overlay: rgba(26, 36, 47, 0.5); /* Полупрозрачный оверлей */
+  --border-accent: rgba(255, 70, 85, 0.6); /* Акцентные границы */
+  --hover-background: rgba(255, 70, 85, 0.1); /* Фон при наведении */
+  --placeholder-text: #bbb;      /* Текст плейсхолдера */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--dark-background);
+  color: var(--light-text);
+  padding-top: 80px; /* Отступ для фиксированного хедера */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
