@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../Modal.css'; // или '../Modal.css' в зависимости от структуры папок
+import styles from '../Modal.module.css'; 
 
 const RegistrationModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true">
-        <button className="modal-close-btn" onClick={onClose}>×</button> {/* Исправлено */}
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modalContent} onClick={e => e.stopPropagation()} role="dialog" aria-modal="true">
+        <button className={styles.modalCloseBtn} onClick={onClose}>×</button> {/* Исправлено */}
 
         <h2>Регистрация</h2>
         <form>

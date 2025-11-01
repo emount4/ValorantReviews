@@ -1,0 +1,93 @@
+.homeContainer {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--light-text);
+}
+
+.introSection {
+  background-color: var(--dark-surface);
+  color: var(--primary-accent);
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  text-align: center;
+  border: 1px solid var(--border-accent);
+}
+
+.scrollSection {
+  color: var(--primary-accent);
+  border-radius: 8px; 
+  margin-bottom: 40px;
+}
+
+.introText {
+  font-size: 18px;
+  margin-top: 15px;
+  line-height: 1.6;
+  color: var(--light-text);
+}
+
+.ratingsSection,
+.reviewsSection {
+  background: var(--dark-surface);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border: 1px solid var(--border-accent);
+}
+
+.ratingsSection ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.ratingsSection li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: var(--light-text);
+}
+
+.homeContainer + .homeContainer {
+  margin-top: 40px;
+}
+
+h1, h2 {
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--primary-accent);
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--primary-accent);
+  text-align: center;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .homeContainer {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+  
+  .introSection {
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .introText {
+    font-size: 16px;
+  }
+  
+  .sectionTitle {
+    font-size: 20px;
+  }
+  
+  .scrollSection {
+    margin-bottom: 30px;
+  }
+}

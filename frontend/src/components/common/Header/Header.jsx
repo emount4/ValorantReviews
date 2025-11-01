@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css';
+import { NavLink } from 'react-router-dom';
+import styles from './Header.module.css';
 import AuthModal from '../Modals/AuthModal/AuthModal';
 import RegistrationModal from '../Modals/AuthModal/RegistrationModal';
 
@@ -30,21 +30,37 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="header">
-        <div className="container">
-          <div className="headerContent">
-            <div className="logo">
-              <Link to="/">Valorant Reviews</Link>
+      <header className={styles.header}>
+        <div className={styles.conteiner}>
+          <div className={styles.headerConten}>
+            <div className={styles.logo}>
+              <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
+                Valorant Reviews
+              </NavLink>
             </div>
-            <nav className="nav">
+            <nav className={styles.nav}>
               <ul>
-                <li><Link to="/">Главная</Link></li>
-                <li><Link to="/about">О проекте</Link></li>
+                <li>
+                  <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
+                    Главная
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/collections" className={({ isActive }) => isActive ? 'active' : ''}>
+                    Коллекции
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>
+                    О проекте
+                  </NavLink>
+                </li>
+
               </ul>
             </nav>
-            <div className="authButtons">
-              <button className="loginBtn" onClick={this.openAuthModal}>Войти</button>
-              <button className="registerBtn" onClick={this.openRegistrationModal}>Регистрация</button>
+            <div className={styles.authButtons}>
+              <button className={styles.loginBtn} onClick={this.openAuthModal}>Войти</button>
+              <button className={styles.registerBtn} onClick={this.openRegistrationModal}>Регистрация</button>
             </div>
           </div>
         </div>

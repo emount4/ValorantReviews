@@ -1,0 +1,80 @@
+.scrollSectionWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.scrollContainer {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 6px;
+  scrollbar-width: none; /* Firefox */
+  flex: 1;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none; /* Chrome, Safari и Opera */
+}
+
+.card {
+  flex: 0 0 auto;
+  width: 256px;
+  height: 145px;
+  background-color: #1a242f;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  border: 1px solid #2a3a4a;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border-color: #ff4655;
+}
+
+.scrollBtn {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 20px;
+  color: #ff4655;
+  border-radius: 4px;
+  user-select: none;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+.scrollBtn:hover {
+  background-color: rgba(255, 70, 85, 0.3);
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .scrollBtn {
+    display: none; /* Скрываем кнопки на мобильных */
+  }
+  
+  .scrollContainer {
+    padding: 5px;
+  }
+  
+  .card {
+    width: 200px;
+    height: 120px;
+  }
+}
