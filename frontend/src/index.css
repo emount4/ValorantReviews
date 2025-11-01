@@ -23,7 +23,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--dark-background);
   color: var(--light-text);
-  padding-top: 80px; /* Отступ для фиксированного хедера */
+  padding-top: 80px; 
 }
 
 code {
