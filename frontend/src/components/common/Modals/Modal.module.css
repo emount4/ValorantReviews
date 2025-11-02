@@ -1,44 +1,57 @@
+/* ===== MODAL LAYOUT ===== */
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--dark-overlay); /* Здесь прозрачность нужна */
+  background-color: rgba(17, 28, 38, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
   backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
 }
 
 .modalContent {
-  background-color: var(--dark-surface); /* А здесь НЕ нужна прозрачность */
-  color: var(--light-text);
+  background-color: #1a242f;
+  color: #eae5da;
   border-radius: 12px;
   padding: 30px 40px;
   max-width: 480px;
   width: 90%;
-  box-shadow: 0 0 20px var(--border-accent);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(255, 70, 85, 0.6);
   position: relative;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
+  border: 1px solid #ff4654;
 }
 
 .modalCloseBtn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   background: transparent;
   border: none;
   font-size: 24px;
-  color: var(--primary-accent);
+  color: #ff4654;
   cursor: pointer;
-  z-index: 10;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
 .modalCloseBtn:hover {
-  color: var(--primary-hover);
+  color: #ff6877;
+  background-color: rgba(255, 70, 85, 0.1);
+  transform: scale(1.1);
 }
 
 .modalContent h2 {
@@ -46,15 +59,22 @@
   margin-bottom: 25px;
   font-weight: 700;
   font-size: 24px;
-  color: var(--primary-accent);
+  color: #ff4654;
   text-align: center;
+}
+
+/* ===== FORM STYLES ===== */
+.modalContent form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .modalContent form label {
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-weight: 600;
-  color: var(--light-text);
+  color: #eae5da;
 }
 
 .modalContent input[type="email"],
@@ -62,32 +82,233 @@
 .modalContent input[type="text"],
 .modalContent input[type="username"] {
   width: 100%;
-  padding: 8px 12px;
+  padding: 12px 16px;
   margin-top: 6px;
-  border: 1px solid var(--primary-accent);
+  border: 1px solid #ff4654;
   border-radius: 6px;
-  background-color: var(--dark-background);
-  color: var(--light-text);
+  background-color: #111c26;
+  color: #eae5da;
   font-size: 14px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.modalContent input:focus {
+  outline: none;
+  border-color: #ff6877;
+  box-shadow: 0 0 0 2px rgba(255, 70, 85, 0.2);
 }
 
 .modalContent input::placeholder {
-  color: var(--placeholder-text);
+  color: #bbb;
 }
 
+.modalContent input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== BUTTON STYLES ===== */
 .modalContent button[type="submit"] {
-  background-color: var(--primary-accent);
+  background-color: #ff4654;
   border: none;
-  padding: 12px 0;
+  padding: 14px 0;
   color: white;
   width: 100%;
   border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  font-size: 16px;
 }
 
-.modalContent button[type="submit"]:hover {
-  background-color: var(--primary-hover);
+.modalContent button[type="submit"]:hover:not(:disabled) {
+  background-color: #e63e4d;
+  transform: translateY(-1px);
+}
+
+.modalContent button[type="submit"]:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== ERROR AND SUCCESS STYLES ===== */
+.error {
+  background-color: rgba(244, 67, 54, 0.1);
+  border: 1px solid #f44336;
+  color: #ff6b6b;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.success {
+  background-color: rgba(76, 175, 80, 0.1);
+  border: 1px solid #4caf50;
+  color: #4caf50;
+  padding: 16px;
+  border-radius: 6px;
+  margin: 10px 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* ===== SWITCH AUTH STYLES ===== */
+.switchAuth {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 70, 85, 0.3);
+  color: #eae5da;
+  font-size: 14px;
+}
+
+.switchButton {
+  background: none;
+  border: none;
+  color: #ff4654;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 8px;
+  margin-left: 4px;
+  transition: color 0.3s ease;
+}
+
+.switchButton:hover {
+  color: #ff6877;
+}
+
+/* ===== FORM GROUP STYLES ===== */
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #eae5da;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ff4654;
+  border-radius: 6px;
+  background-color: #111c26;
+  color: #eae5da;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* ===== SUBMIT BUTTON STYLES ===== */
+.submitButton {
+  background-color: #ff4654;
+  border: none;
+  padding: 14px 0;
+  color: white;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #e63e4d;
+  transform: translateY(-1px);
+}
+
+.submitButton:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modalContent {
+  animation: slideIn 0.3s ease;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .modalContent {
+    padding: 25px 30px;
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+  
+  .modalContent h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .modalContent input[type="email"],
+  .modalContent input[type="password"],
+  .modalContent input[type="text"],
+  .modalContent input[type="username"] {
+    padding: 10px 14px;
+  }
+  
+  .modalContent button[type="submit"] {
+    padding: 12px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 20px 25px;
+    margin: 15px;
+    width: calc(100% - 30px);
+  }
+  
+  .modalContent h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+  
+  .modalCloseBtn {
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+  }
+  
+  .switchAuth {
+    font-size: 13px;
+  }
+  
+  .switchButton {
+    font-size: 13px;
+  }
 }

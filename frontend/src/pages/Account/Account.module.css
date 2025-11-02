@@ -1,0 +1,162 @@
+.accountContainer {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--light-text);
+}
+
+.welcomeSection {
+  background-color: var(--dark-surface);
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border: 1px solid var(--border-accent);
+  text-align: center;
+}
+
+.welcomeTitle {
+  color: var(--primary-accent);
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.userEmail {
+  font-size: 1.1rem;
+  color: var(--light-text);
+  opacity: 0.9;
+}
+
+.infoSection {
+  background-color: var(--dark-surface);
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  border: 1px solid var(--border-accent);
+}
+
+.sectionTitle {
+  color: var(--primary-accent);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.sectionText {
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: var(--light-text);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.statCard {
+  background-color: var(--dark-background);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid var(--border-accent);
+  transition: transform 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+}
+
+.statNumber {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-accent);
+  margin-bottom: 5px;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--light-text);
+  opacity: 0.8;
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.actionButton {
+  background-color: var(--primary-accent);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.actionButton:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.actionButton.secondary {
+  background-color: transparent;
+  border: 1px solid var(--primary-accent);
+  color: var(--primary-accent);
+}
+
+.actionButton.secondary:hover {
+  background-color: var(--hover-background);
+}
+
+.loginMessage {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--light-text);
+  font-size: 1.2rem;
+}
+
+.loginMessage a {
+  color: var(--primary-accent);
+  text-decoration: none;
+}
+
+.loginMessage a:hover {
+  text-decoration: underline;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .accountContainer {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+  
+  .welcomeSection {
+    padding: 20px;
+  }
+  
+  .welcomeTitle {
+    font-size: 1.5rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .actionsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .infoSection {
+    padding: 20px;
+  }
+}

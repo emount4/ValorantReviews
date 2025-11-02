@@ -45,7 +45,7 @@ def authenticate_user(email, password):
     if not resp or resp["status"] != "success" or resp.get("row_count", 0) == 0:
         return False
     user_obj = resp["data"][0]   # берём первого найденного пользователя
-    if not verify_password(password, user_obj["password"]):
+    if not verify_password(password, user_obj["password_hash"]):
         return False
     return user_obj
 
@@ -68,6 +68,9 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(data={"sub": user["username"]}, expires_delta=access_token_expires)
     return {"access_token": access_token, "token_type": "bearer"}
+
+from fastapi import Depends
+from jose import JWTError, jwt
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(
@@ -106,7 +109,7 @@ async def register(user: UserRegister):
     user_data = {
         "username": user.username,
         "email": user.email,
-        "password": hashed_password
+        "password_hash": hashed_password
     }
     result = crud.insert_data("Accounts", user_data)
     if result["status"] != "success":
