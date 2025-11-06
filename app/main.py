@@ -3,8 +3,9 @@ from sys import prefix
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
+
 from database import db
-from routers import auth, system, routes, crud_router
+from routers import auth, system, routes, crud_router, migrations
 
 from fastapi import Depends
 from routers.auth import get_current_user
@@ -25,6 +26,8 @@ app.include_router(system.router, tags=["system"])
 app.include_router(routes.router, prefix="/routes", tags=["routes"])
 
 app.include_router(crud_router.router, prefix="/crud_router", tags=["crud_router"])
+
+app.include_router(migrations.router, prefix="/migration", tags=["migration"]  )
 @app.get("/")
 async def root():
     return {"message": "Valorant Skins API", "status": "running"}

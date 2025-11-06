@@ -1,0 +1,118 @@
+.skeleton {
+  background-color: var(--dark-surface);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeletonImage {
+  width: 100%;
+  height: 180px;
+  background: var(--dark-background);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeletonContent {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeletonTitle {
+  height: 20px;
+  background: var(--dark-background);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeletonBottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 0 0 0;
+  margin-top: auto;
+}
+
+.skeletonRating {
+  width: 28px;
+  height: 28px;
+  background: var(--dark-background);
+  border-radius: 4px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeletonText {
+  height: 16px;
+  background: var(--dark-background);
+  border-radius: 4px;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Анимация для всех элементов скелетона */
+.skeletonImage::after,
+.skeletonTitle::after,
+.skeletonRating::after,
+.skeletonText::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  100% {
+    left: 100%;
+  }
+}
+
+/* Адаптивность для скелетона */
+@media (max-width: 900px) {
+  .skeletonImage {
+    height: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  .skeletonImage {
+    height: 110px;
+  }
+  
+  .skeletonContent {
+    padding: 10px;
+    gap: 8px;
+  }
+  
+  .skeletonTitle {
+    height: 16px;
+  }
+  
+  .skeletonRating {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .skeletonText {
+    height: 14px;
+  }
+}

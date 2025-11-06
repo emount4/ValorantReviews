@@ -19,22 +19,28 @@ class ValorantAPI:
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
-    def get_skins(self):
-        data = self.fetch_valorant_data("weapons")
-        skins = []
+    def get_bundles(self):
+        data = self.fetch_valorant_data("bundles")
+        bundles = []
 
-        for weapon in data.get("data", []):
-            for skin in weapon.get("skins", []):
-                skins.append({
-                    "weapon_type": weapon.get("category", "Unknown"),
-                    "collection_name": skin.get("displayName"),  # Можно заменить на реальное имя, если есть маппинг
-                    "rarity": None,  # Если редкость есть, добавьте обработку здесь
-                    "price": (weapon.get("shopData") or {}).get("cost", 0),  # Безопасно, если shopData==None
-                    "image_url": skin.get("displayIcon")
+        for bundle in data.get("data", []):
+            bundles.append({
+                "uuid": bundle.get("uuid"),
+                "display_name": bundle.get("displayName"),
+                "image_url": bundle.get("displayIcon")
                 })
 
-        return skins
+        return bundles
 
+    def get_rarity(self):
+        data = self.fetch_valorant_data("contenttiers")
+        raritys = []
 
-
+        for rarity in data.get("data", []):
+            raritys.append({
+                "uuid": rarity.get("uuid"),
+                "display_name": rarity.get("displayName"),
+                "displayIcon": rarity.get("displayIcon")
+            })
+        return raritys
 

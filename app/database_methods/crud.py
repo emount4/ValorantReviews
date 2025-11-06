@@ -297,3 +297,27 @@ class CRUD:
         except Exception as e:
             return {"status": "error", "message": f"Row count error: {str(e)}"}
 
+
+    def get_column_values(self, table_name: str, column_name: str) -> Dict[str, Any]:
+        """Получить все значения определенного столбца"""
+        if not self.db.is_connected():
+            self.db.connect()
+        try:
+            from sqlalchemy import Table, select, distinct
+
+            table = Table(table_name, self.db.metadata, autoload_with=self.db.engine)
+            stmt = select(table.c[column_name])
+
+            with self.db.engine.begin() as connection:
+                result = connection.execute(stmt)
+                values = [row[0] for row in result]
+
+            return {
+                "status": "success",
+                "data": values,
+                "column": column_name,
+                "table": table_name,
+                "count": len(values)
+            }
+        except Exception as e:
+            return {"status": "error", "message": f"Error getting column values: {str(e)}"}

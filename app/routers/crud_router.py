@@ -7,6 +7,7 @@ from starlette import status
 
 from app.database import db, get_db
 from app.database_methods.crud import CRUD
+
 router = APIRouter()
 crud = CRUD(db)
 
@@ -65,3 +66,9 @@ async def get_table_row_count(
         raise HTTPException(status_code=400, detail=result["message"])
     return result
 
+@router.get("/collections")
+async def get_collections():
+    resp = crud.get_table_data("Collections", 1000)  # реализуйте нужный метод получения всех коллекций
+    if resp["status"] != "success":
+        return []
+    return resp["data"]
