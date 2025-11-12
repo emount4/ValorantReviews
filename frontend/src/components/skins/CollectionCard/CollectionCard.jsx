@@ -1,9 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './CollectionCard.module.css';
 
-const CollectionCard = ({ title, imageUrl }) => {
-  return (
-    <div className={styles.card}>
+const CollectionCard = ({ title, imageUrl, id }) => {
+    const navigate = useNavigate();
+
+    const handleCardClick = () => {
+        navigate(`/reviews/${id}`)
+    }
+  
+    return (
+    <div className={styles.card} onClick={handleCardClick}>
       <div className={styles.imageBox}>
         <img src={imageUrl} alt={title} className={styles.image} />
         <div className={styles.bottomBar}>

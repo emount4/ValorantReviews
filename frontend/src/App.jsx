@@ -4,6 +4,7 @@ import Footer from './components/common/Footer/Footer.jsx';
 import Header from './components/common/Header/Header.jsx';
 import Collections from './pages/Collections/Collections.jsx';
 import About from './pages/About/About.jsx';
+import ReviewsPage from './pages/Review/Review.jsx';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './routers/ProtectedRoute.jsx';
 import AccountPage from './pages/Account/Account.jsx';
@@ -24,7 +25,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/collections" element={<Collections />} />
-
+          <Route path="/reviews/:collectionId" element={<ReviewsPage />} /> {/* ← Добавь этот маршрут */}
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
             <Route path="/account" element={<AccountPage user={user} />} />
             {/* Другие защищённые маршруты здесь */}

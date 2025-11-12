@@ -1,9 +1,8 @@
 .card {
-  width: 280px;
-  margin: 10px;
-  /* Плавное изменение ширины для маленьких экранов */
+  width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
 .imageBox {
@@ -15,14 +14,17 @@
   flex-direction: column;
   background-color: var(--dark-surface);
   box-shadow: 0 0 8px var(--dark-overlay);
+  transition: all 0.3s ease;
+  /* Общая высота карточки адаптивная, но изображение фиксированное 16:9 */
 }
 
 .image {
   width: 100%;
-  height: 180px;
+  height: 180px; /* Фиксированная высота для 16:9 */
   object-fit: cover;
   display: block;
   background-color: var(--dark-background);
+  flex-shrink: 0;
 }
 
 .bottomBar {
@@ -30,9 +32,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 6px 10px;
+  padding: 12px 10px;
   background-color: var(--dark-background);
   border-top: 1px solid var(--border-accent);
+  /* Высота нижней части как раньше */
+  min-height: 60px;
+  box-sizing: border-box;
 }
 
 .ratingBox {
@@ -61,36 +66,46 @@
   flex: 1;
 }
 
+.card:hover .imageBox {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(255, 70, 85, 0.4);
+  border-color: var(--primary-accent);
+}
+
+/* Дополнительные эффекты при наведении */
+.card:hover .image {
+  filter: brightness(1.05);
+}
+
+.card:hover .title {
+  color: var(--primary-accent);
+}
+
 /* ------- Адаптивные стили ------- */
 @media (max-width: 900px) {
-  .card {
-    width: 45vw;
-    min-width: 190px;
-  }
   .image {
-    height: 140px;
+    height: 160px; /* Чуть меньше на планшетах, но сохраняем 16:9 */
   }
 }
 
 @media (max-width: 600px) {
-  .card {
-    width: 95vw;
-    min-width: 150px;
-    margin: 12px auto;
-  }
   .image {
-    height: 100px;
+    height: 140px; /* Сохраняем пропорции 16:9 на телефонах */
   }
+  
+  .bottomBar {
+    padding: 10px 8px;
+    min-height: 55px;
+  }
+  
   .title {
     font-size: 0.96rem;
   }
+  
   .ratingBox {
     width: 22px;
     height: 22px;
     font-size: 0.85rem;
     line-height: 22px;
-  }
-  .bottomBar {
-    padding: 6px 4px;
   }
 }

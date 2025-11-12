@@ -1,4 +1,12 @@
 :root {
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 40px;
+
   /* Основная палитра */
   --primary-accent: #ff4654;    /* Основной акцентный цвет */
   --dark-background: #111c26;   /* Темный фон */

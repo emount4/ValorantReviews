@@ -1,77 +1,87 @@
+
+
 .aboutContainer {
-  max-width: 1200px;        
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: var(--dark-background); 
-  border-radius: 8px;      
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+  padding: var(--space-lg);
+  background-color: var(--dark-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .introSection {
-  margin-bottom: 30px;
+  margin-bottom: var(--space-xl);
 }
 
 .introSection h1 {
   font-size: 28px;
   font-weight: 700;
   color: var(--primary-accent);
-  margin-bottom: 10px;
+  margin-bottom: var(--space-md);
 }
 
 .aboutText {
   font-size: 18px;
   line-height: 1.6;
   color: var(--light-text);
-  white-space: pre-line;   
-  padding-left: 10px;      
+  white-space: pre-line;
+  padding-left: var(--space-sm);
 }
 
 .aboutList {
   list-style-type: disc;
   padding-left: 25px;
-  margin-top: 20px;
+  margin-top: var(--space-md);
   color: var(--light-text);
   font-size: 16px;
   line-height: 1.5;
 }
 
 .featureItem {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-sm);
 }
 
-@media (max-width: 1200px) {
-  .aboutContainer {
-    padding: 15px;
-  }
-  
-  .introSection h1 {
-    font-size: 24px;
-  }
-  
-  .aboutText {
-    font-size: 16px;
-    padding-left: 8px;
-  }
+.telegramSection {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--light-text);
 }
 
-/* Для мобильных устройств */
+.telegramButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: #0088cc;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.telegramButton:hover {
+  background-color: #0077b3;
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.telegramIcon {
+  width: 28px;
+  height: 28px;
+  user-select: none;
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
-  .aboutContainer {
-    padding: 10px;
-    margin: 10px;
+  .telegramButton {
+    width: 50px;
+    height: 50px;
   }
-  
-  .introSection h1 {
-    font-size: 22px;
-  }
-  
-  .aboutText {
-    font-size: 15px;
-    padding-left: 5px;
-  }
-  
-  .aboutList {
-    padding-left: 20px;
-    font-size: 15px;
+  .telegramIcon {
+    width: 24px;
+    height: 24px;
   }
 }

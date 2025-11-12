@@ -14,7 +14,6 @@ const AccountPage = ({ user }) => {
     );
   }
 
-  // Заглушка для статистики пользователя
   const userStats = {
     reviews: 12,
     collections: 5,
