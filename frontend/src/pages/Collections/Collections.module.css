@@ -15,8 +15,8 @@
 }
 
 .searchInput {
-  width: 100%;
-  max-width: 400px;
+  /* width: 100%; */
+  min-width: 500px;
   padding: 12px 16px;
   margin: 0 auto 30px;
   display: block;
@@ -26,6 +26,7 @@
   color: var(--light-text);
   font-size: 16px;
   transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 .searchInput:focus {
@@ -94,6 +95,7 @@
   .searchInput {
     margin-bottom: 20px;
     padding: 10px 14px;
+    min-width: 400px;
   }
   
   .grid {
@@ -113,8 +115,9 @@
   }
   
   .searchInput {
-    margin-bottom: 16px;
+    /* margin: 16px;   */
     padding: 8px 12px;
+    min-width: 300px;
   }
   
   /* На телефонах - 1 карточка крупно */
@@ -124,4 +127,18 @@
     max-width: 400px;
     margin: 0 auto;
   }
+}
+
+.loading {
+  text-align: center;
+  padding: var(--space-xxl);
+  color: var(--light-text);
+  font-size: 1.2rem;
+}
+
+.error {
+  text-align: center;
+  padding: var(--space-xxl);
+  color: var(--primary-accent);
+  font-size: 1.2rem;
 }

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./Review.module.css";
+import ReviewHeader from "./ReviewHeader";
+import Krit from "../../components/common/Modals/Krit/Krit";
 
 const ReviewsPage = () => {
   const { collectionId } = useParams();
   const [collection, setCollection] = useState(null);
-  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [isKritOpen, setIsKritOpen] = useState(false);
   // Состояние формы для отслеживания всех вводимых данных
   const [formData, setFormData] = useState({
     title: "",
@@ -21,6 +22,14 @@ const ReviewsPage = () => {
       vibe: 1, // изменено с atmosphere
     },
   });
+
+  const openKrit = () => {
+    setIsKritOpen(true);
+  };
+
+  const closeKrit = () => {
+    setIsKritOpen(false);
+  };
 
   // Загрузка данных о коллекции и существующих отзывов при монтировании компонента
   useEffect(() => {
@@ -107,7 +116,7 @@ const ReviewsPage = () => {
   return (
     <div className={styles.container}>
       {/* Заголовок коллекции */}
-      <div>{/* Здесь будет фото и видео коллекции + инфа */}</div>
+      <ReviewHeader />
 
       {/* Форма для написания рецензии */}
       <div className={styles.reviewForm}>
@@ -120,6 +129,25 @@ const ReviewsPage = () => {
               <li>• Без оскорблений</li>
               <li>• Без рекламы и ссылок</li>
               <li>• Содержательные</li>
+            </ul>
+          </div>
+
+          <div className={styles.smallInfo}>
+            <h2> Информация </h2>
+            <ul>
+              <li> Дата выхода: 00.00.0000 </li>
+              <li> Редкость: Standart </li>
+              <li> Состоит из: Вандал, Фантом ... </li>
+
+              {/* добавить иконку редкости */}
+              <h2> Цены: </h2>
+              <ul>
+                <li> Стоимость коллекции: 5100 VP </li>
+                <li> Стоимость оружия: 1275 VP</li>
+                <li> Стоимость ножа: 4350 VP </li>
+              </ul>
+
+              {/* добавить иконку VP */}
             </ul>
           </div>
         </div>
@@ -275,7 +303,7 @@ const ReviewsPage = () => {
                   >
                     Очистить черновик
                   </button>
-                  <button className={styles.clearButton}>
+                  <button className={styles.clearButton} onClick={openKrit}>
                     Критерии 90-балльной системы оценивания
                   </button>
                 </div>
@@ -295,6 +323,13 @@ const ReviewsPage = () => {
           </div>
         </div>
       </div>
+      <Krit
+        isOpen={isKritOpen}
+        onClose={closeKrit}
+        onSwitchToLogin={() => {
+          closeKrit();
+        }}
+      />
     </div>
   );
 };

@@ -46,10 +46,7 @@ async def startup_event():
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173"
-    #деплой
-    ],
+    allow_origins=["http://localhost:5174", "http://localhost:5173"],  # Ваши фронтенд URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

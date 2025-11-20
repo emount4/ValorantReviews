@@ -312,3 +312,406 @@
     font-size: 13px;
   }
 }
+
+
+/* ===== MODAL LAYOUT ===== */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 28, 38, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modalContent {
+  background-color: #1a242f;
+  color: #eae5da;
+  border-radius: 12px;
+  padding: 30px 40px;
+  max-width: 480px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden; /* Изменено с auto на hidden */
+  box-shadow: 0 0 20px rgba(255, 70, 85, 0.6);
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  border: 1px solid #ff4654;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #ff4654;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 10001; /* Добавляем z-index чтобы был поверх скроллбара */
+}
+
+.modalCloseBtn:hover {
+  color: #ff6877;
+  background-color: rgba(255, 70, 85, 0.1);
+  transform: scale(1.1);
+}
+
+/* ===== MODAL BODY WITH CUSTOM SCROLLBAR ===== */
+.modalBody {
+  max-height: calc(90vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+  margin-right: -8px;
+  margin-top: 14px; 
+  margin-bottom: 60px;
+  /* Кастомный скроллбар */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-accent) transparent;
+}
+
+/* WebKit скроллбар */
+.modalBody::-webkit-scrollbar {
+  width: 8px;
+}   
+
+.modalBody::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 60px 0 20px 0; /* Большой отступ сверху */
+  border-radius: 4px;
+}
+
+.modalBody::-webkit-scrollbar-thumb {
+  background: var(--primary-accent);
+  border-radius: 4px;
+  border: 2px solid #1a242f;
+  min-height: 40px;
+}
+
+.modalBody::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+.modalBody::-webkit-scrollbar-thumb:active {
+  background: var(--primary-dark);
+}
+
+.modalBody::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ===== MODAL HEADER ===== */
+.modalHeader {
+  margin-bottom: 25px;
+  text-align: center;
+  padding-right: 8px;
+  position: relative;
+}
+
+.modalHeader h2 {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--primary-accent);
+}
+
+.modalHeader p {
+  color: var(--placeholder-text);
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ===== ACCORDION STYLES ===== */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+  padding-right: 4px;
+}
+
+.accordionItem {
+  border: 1px solid var(--primary-accent);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--dark-background);
+  transition: all 0.3s ease;
+}
+
+.accordionItem:hover {
+  border-color: var(--primary-hover);
+  box-shadow: 0 0 10px var(--border-accent);
+}
+
+.accordionHeader {
+  background: var(--dark-surface);
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.accordionHeader:hover {
+  background: #22303d;
+}
+
+.accordionHeaderActive {
+  background: #22303d;
+  border-bottom: 1px solid var(--primary-accent);
+}
+
+.accordionNumber {
+  background: var(--primary-accent);
+  color: var(--light-text);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.accordionTitle {
+  color: var(--light-text);
+  font-weight: 600;
+  flex: 1;
+  font-size: 15px;
+}
+
+.accordionIcon {
+  color: var(--primary-accent);
+  font-size: 18px;
+  font-weight: bold;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.accordionHeaderActive .accordionIcon {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  background: var(--dark-background);
+  padding: 20px;
+  color: var(--light-text);
+  line-height: 1.6;
+  border-top: 1px solid #2a3642;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.criteriaLine {
+  margin: 12px 0;
+  display: flex;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.bullet {
+  color: var(--placeholder-text);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+/* ===== MODAL FOOTER ===== */
+.modalFooter {
+  margin-top: 24px;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 70, 85, 0.3);
+  padding-right: 8px;
+}
+
+.understandButton {
+  background: var(--primary-accent);
+  color: var(--light-text);
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.understandButton:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modalContent {
+  animation: slideIn 0.3s ease;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .modalContent {
+    padding: 25px 30px;
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+  
+  .modalBody {
+    max-height: calc(90vh - 80px);
+    padding-right: 6px;
+    margin-right: -6px;
+  }
+  
+  .modalBody::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .modalBody::-webkit-scrollbar-track {
+    margin: 40px 0 15px 0;
+  }
+  
+  .modalHeader h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .accordionHeader {
+    padding: 14px 16px;
+  }
+  
+  .accordionContent {
+    padding: 16px;
+  }
+  
+  .accordionTitle {
+    font-size: 14px;
+  }
+  
+  .understandButton {
+    padding: 10px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 20px 25px;
+    margin: 15px;
+    width: calc(100% - 30px);
+  }
+  
+  .modalBody {
+    max-height: calc(90vh - 60px);
+    padding-right: 4px;
+    margin-right: -4px;
+  }
+  
+  .modalBody::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .modalBody::-webkit-scrollbar-track {
+    margin: 30px 0 10px 0;
+  }
+  
+  .modalHeader h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+  
+  .modalCloseBtn {
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+  }
+  
+  .accordionHeader {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+  
+  .accordionNumber {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+  
+  .accordionTitle {
+    font-size: 13px;
+  }
+  
+  .accordionIcon {
+    font-size: 16px;
+  }
+  
+  .criteriaLine {
+    font-size: 13px;
+  }
+  
+  .understandButton {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+}
+
+/* ===== FALLBACK FOR FIREFOX ===== */
+@supports (scrollbar-width: thin) {
+  .modalBody {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-accent) transparent;
+  }
+}

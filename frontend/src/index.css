@@ -1,5 +1,5 @@
 :root {
-
+  /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -7,21 +7,37 @@
   --space-xl: 32px;
   --space-xxl: 40px;
 
-  /* Основная палитра */
-  --primary-accent: #ff4654;    /* Основной акцентный цвет */
-  --dark-background: #111c26;   /* Темный фон */
-  --light-text: #eae5da;        /* Светлый текст */
-  
-  /* Дополнительные цвета на основе основной палитры */
-  --primary-hover: #ff6877;     /* Акцент при наведении */
-  --primary-dark: #e63e4d;      /* Темный акцент */
-  --dark-surface: #1a242f;      /* Темные поверхности */
-  --dark-overlay: rgba(26, 36, 47, 0.5); /* Полупрозрачный оверлей */
-  --border-accent: rgba(255, 70, 85, 0.6); /* Акцентные границы */
-  --hover-background: rgba(255, 70, 85, 0.1); /* Фон при наведении */
-  --placeholder-text: #bbb;      /* Текст плейсхолдера */
-}
+  /* Colors */
+  --primary-accent: #ff4654;
+  --dark-background: #111c26;
+  --light-text: #eae5da;
+  --primary-hover: #ff6877;
+  --primary-dark: #e63e4d;
+  --dark-surface: #1a242f;
+  --dark-overlay: rgba(26, 36, 47, 0.5);
+  --border-accent: rgba(255, 70, 85, 0.6);
+  --hover-background: rgba(255, 70, 85, 0.1);
+  --placeholder-text: #bbb;
 
+  /* Typography */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 24px;
+
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
 
 body {
   margin: 0;
@@ -52,5 +68,16 @@ html, body, #root {
 main {
   flex: 1 0 auto;
   width: 100%;
+}
+
+/* Добавьте в соответствующие module.css файлы */
+
+.imageLoading, .mediaLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  background: #f0f0f0;
+  color: #666;
 }
 

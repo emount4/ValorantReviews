@@ -12,3 +12,10 @@
   display: flex;
   flex-direction: column;
 }
+
+.loading {
+  text-align: center;
+  padding: var(--space-xxl);
+  color: var(--light-text);
+  font-size: 1.2rem;
+}

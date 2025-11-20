@@ -72,6 +72,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
 from fastapi import Depends
 from jose import JWTError, jwt
 
+
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -84,11 +85,32 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
             raise credentials_exception
     except JWTError:
         raise credentials_exception
-    user = get_user(username)
-    if not user:
-        raise credentials_exception
-    return user
 
+    # Ищем пользователя по username (который хранится в токене)
+    user_resp = crud.get_table_data_by_column("Accounts", "username", username, 1)
+
+    if not user_resp or user_resp["status"] != "success" or user_resp.get("row_count", 0) == 0:
+        raise credentials_exception
+
+    user = user_resp["data"][0]
+
+    # Для отладки - выведем все поля пользователя
+    print("User data from DB:", user.keys())  # Это покажет все доступные поля
+
+    # Возвращаем только необходимые данные пользователя
+    user_data = {
+        "id": user.get("id"),
+        "username": user.get("username"),
+        "email": user.get("email"),
+        "created_at": user.get("created_at")
+    }
+
+    # Если created_at нет, попробуем другие возможные названия
+    if user_data["created_at"] is None:
+        user_data["created_at"] = user.get("created_date") or user.get("date_created") or user.get(
+            "registration_date") or "Не указано"
+
+    return user_data
 #Регистрация
 
 from pydantic import BaseModel, EmailStr, constr
@@ -115,3 +137,7 @@ async def register(user: UserRegister):
     if result["status"] != "success":
         raise HTTPException(status_code=500, detail=result["message"])
     return {"message": "Account created"}
+
+@router.get("/me")
+async def read_users_me(current_user: dict = Depends(get_current_user)):
+    return current_user

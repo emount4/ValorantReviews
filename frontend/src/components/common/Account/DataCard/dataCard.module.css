@@ -1,0 +1,99 @@
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.card {
+  position: relative;
+  background: var(--dark-surface);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--border-accent);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  box-sizing: border-box;
+  max-height: 245px;
+}
+
+
+.cardHeader {
+  color: var(--light-text);
+  margin: var(--space-sm) 0 var(--space-xs);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+}
+
+.level{
+  border: 1px solid var(--border-accent);
+  border-radius: var(--border-radius-lg);
+  padding: 1px;
+  margin-top: var(--space-md);
+}
+
+.cardWithAvatar {
+  padding-top: calc(80px + 6px + 32px); /* Отступ только для карточки с аватаром */
+}
+
+.avatarContainer {
+  position: absolute;
+  top: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-accent), var(--primary-hover));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light-text);
+  font-weight: bold;
+  font-size: var(--font-size-xl);
+  border: 3px solid var(--dark-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+
+
+.registrationDate {
+  color: var(--placeholder-text);
+  margin: 0 0 var(--space-sm);
+  font-size: var(--font-size-sm);
+}
+
+.description {
+  color: var(--light-text);
+  margin: 0;
+  font-size: var(--font-size-sm);
+  opacity: 0.8;
+  text-align: center;
+}
+
+.level {
+  color: var(--light-text);
+  font-size: var(--font-size-md);
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: var(--space-md);
+  }
+  
+  .cardWithAvatar {
+    padding-top: calc(70px + 6px + 24px);
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+    font-size: var(--font-size-lg);
+  }
+  
+  .cardHeader {
+    font-size: var(--font-size-xl);
+  }
+}

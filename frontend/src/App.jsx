@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './routers/ProtectedRoute.jsx';
 import AccountPage from './pages/Account/Account.jsx';
 import { AuthProvider, useAuth } from './context/AuthContext/AuthContext.jsx';
+import ScrollToTop from './components/common/ScrollToTop.jsx';
 
 function AppContent() {
   const { isAuthenticated, user, loading } = useAuth();
@@ -19,6 +20,7 @@ function AppContent() {
 
   return (
     <div className={styles.app}>
+      <ScrollToTop/>
       <Header />
       <main className={styles.mainContent}>
         <Routes>

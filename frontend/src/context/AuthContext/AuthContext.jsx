@@ -7,13 +7,47 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const t = localStorage.getItem("access_token");
-    if (t) {
-      setToken(t);
-      setUser({ email: "user@example.com", username: "user" }); // Для демо
+  // Функция для получения данных пользователя по токену
+  const fetchUserData = async (token) => {
+    try {
+      const res = await fetch("http://localhost:8000/auth/me", {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
+      
+      if (res.ok) {
+        const userData = await res.json();
+        return { success: true, user: userData };
+      } else {
+        return { success: false };
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      return { success: false };
     }
-    setLoading(false);
+  };
+
+  useEffect(() => {
+    const initializeAuth = async () => {
+      const t = localStorage.getItem("access_token");
+      if (t) {
+        // Получаем реальные данные пользователя из БД
+        const userData = await fetchUserData(t);
+        if (userData.success) {
+          setToken(t);
+          setUser(userData.user);
+        } else {
+          // Если токен невалидный, очищаем
+          localStorage.removeItem("access_token");
+        }
+      }
+      setLoading(false);
+    };
+
+    initializeAuth();
   }, []);
 
   const login = async (email, password) => {
@@ -22,7 +56,7 @@ export const AuthProvider = ({ children }) => {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({ 
-          username: email, 
+          username: email,  // Здесь ОК - FastAPI OAuth2 ожидает username поле
           password: password 
         }).toString(),
       });
@@ -31,17 +65,27 @@ export const AuthProvider = ({ children }) => {
         const data = await res.json();
         setToken(data.access_token);
         localStorage.setItem("access_token", data.access_token);
-        setUser({ email, username: email.split('@')[0] });
+        
+        // Получаем реальные данные пользователя после логина
+        const userData = await fetchUserData(data.access_token);
+        if (userData.success) {
+          setUser(userData.user);
+        } else {
+          // Fallback - если endpoint /auth/me не работает
+          setUser({ 
+            email: email, 
+            username: email.split('@')[0] // Временное решение
+          });
+        }
+        
         return { success: true };
       } else {
         let errorMessage = "Ошибка авторизации";
         try {
           const errorData = await res.json();
-          // Обрабатываем разные форматы ошибок от FastAPI
           if (typeof errorData.detail === 'string') {
             errorMessage = errorData.detail;
           } else if (Array.isArray(errorData.detail)) {
-            // Обрабатываем ошибки валидации Pydantic
             errorMessage = errorData.detail.map(err => 
               `${err.loc ? err.loc.join('.') + ': ' : ''}${err.msg}`
             ).join(', ');
@@ -76,13 +120,11 @@ export const AuthProvider = ({ children }) => {
         let errorMessage = "Ошибка регистрации";
         try {
           const errorData = await res.json();
-          console.log('Registration error response:', errorData); // Для отладки
+          console.log('Registration error response:', errorData);
           
-          // Обрабатываем разные форматы ошибок от FastAPI
           if (typeof errorData.detail === 'string') {
             errorMessage = errorData.detail;
           } else if (Array.isArray(errorData.detail)) {
-            // Обрабатываем ошибки валидации Pydantic
             errorMessage = errorData.detail.map(err => 
               `${err.loc ? err.loc.slice(1).join('.') + ': ' : ''}${err.msg}`
             ).join(', ');
@@ -108,7 +150,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("access_token");
   };
 
-  const isAuthenticated = !!token;
+  const isAuthenticated = !!token && !!user;
 
   return (
     <AuthContext.Provider value={{ 

@@ -3,10 +3,11 @@
 .aboutContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--space-lg);
+  margin-top: var(--space-lg);
   background-color: var(--dark-background);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: var(--space-md);
 }
 
 .introSection {
