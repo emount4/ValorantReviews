@@ -5,7 +5,7 @@ import styles from "./ReviewHeader.module.css";
 const ReviewHeader = () => {
   const [collection, setCollection] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { id } = useParams();
+  const { collectionId } = useParams(); // ИЗМЕНИЛ id на collectionId
   const location = useLocation();
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -17,14 +17,18 @@ const ReviewHeader = () => {
     if (navigationData) {
       // Если данные пришли из navigate - используем их
       setCollection(navigationData);
-    } else {
+    } else if (collectionId) { // ДОБАВИЛ проверку на существование collectionId
       // Иначе загружаем по API
-      fetch(`http://localhost:8000/crud_router/collections/${id}`)
+      fetch(`http://localhost:8000/crud_router/table-data/Collections/column/${collectionId}?column=id&limit=1`)
         .then((res) => res.json())
-        .then((data) => setCollection(data))
+        .then((data) => {
+          if (data.data && data.data.length > 0) {
+            setCollection(data.data[0]);
+          }
+        })
         .catch((err) => console.error("Ошибка загрузки коллекции:", err));
     }
-  }, [id, navigationData]);
+  }, [collectionId, navigationData]); // ИЗМЕНИЛ зависимость на collectionId
 
   // Функция для получения URL картинки
   const getImageUrl = (imagePath) => {

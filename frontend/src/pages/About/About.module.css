@@ -1,53 +1,278 @@
 
-
 .aboutContainer {
   max-width: 1200px;
   margin: 0 auto;
   margin-top: var(--space-lg);
-  background-color: var(--dark-background);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: var(--space-md);
+  background-color: var(--dark-surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-xl);
+  position: relative;
 }
 
+/* Основные стили */
 .introSection {
   margin-bottom: var(--space-xl);
 }
 
-.introSection h1 {
-  font-size: 28px;
+.mainTitle {
+  font-size: var(--font-size-xxl);
   font-weight: 700;
+  color: var(--primary-accent);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-accent), var(--primary-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.aboutText {
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  color: var(--light-text);
+  text-align: justify;
+  margin: 0;
+}
+
+/* Статистика */
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+  padding: var(--space-lg);
+  background: var(--dark-background);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-accent);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.statLabel {
+  font-size: var(--font-size-sm);
+  color: var(--light-text);
+  opacity: 0.9;
+}
+
+/* Секции */
+.featuresSection,
+.previewSection,
+.roadmapSection {
+  margin-bottom: var(--space-xl);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--primary-accent);
+  margin-bottom: var(--space-lg);
+  border-left: 4px solid var(--primary-accent);
+  padding-left: var(--space-md);
+}
+
+/* Список возможностей */
+.aboutList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--dark-background);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-accent);
+  transition: all 0.3s ease;
+  color: var(--light-text);
+  font-size: var(--font-size-md);
+}
+
+.featureItem:hover {
+  transform: translateY(-3px);
+  background: var(--hover-background);
+  border-color: var(--primary-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.featureIcon {
+  font-size: var(--font-size-xl);
+  flex-shrink: 0;
+}
+
+/* Preview Grid */
+.previewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.previewItem {
+  text-align: center;
+  padding: var(--space-lg);
+  background: var(--dark-background);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-accent);
+  transition: all 0.3s ease;
+}
+
+.previewItem:hover {
+  transform: translateY(-5px);
+  background: var(--hover-background);
+  border-color: var(--primary-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.previewIcon {
+  width: 50px;
+  height: 50px;
+  background: var(--primary-accent);
+  color: var(--light-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin: 0 auto var(--space-md);
+  font-size: var(--font-size-lg);
+}
+
+.previewTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--light-text);
+  margin-bottom: var(--space-sm);
+}
+
+.previewText {
+  font-size: var(--font-size-sm);
+  color: var(--light-text);
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* Roadmap */
+.roadmapList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.roadmapItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--dark-background);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-accent);
+}
+
+.roadmapStatus {
+  font-size: var(--font-size-xl);
+  flex-shrink: 0;
+}
+
+.roadmapText {
+  color: var(--light-text);
+  font-size: var(--font-size-md);
+}
+
+/* CTA Section */
+.ctaSection {
+  text-align: center;
+  padding: var(--space-xl);
+  background: var(--dark-background);
+  border-radius: var(--border-radius-lg);
+  margin: var(--space-xl) 0;
+  border: 1px solid var(--border-accent);
+}
+
+.ctaTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
   color: var(--primary-accent);
   margin-bottom: var(--space-md);
 }
 
-.aboutText {
-  font-size: 18px;
-  line-height: 1.6;
+.ctaText {
+  font-size: var(--font-size-md);
   color: var(--light-text);
-  white-space: pre-line;
-  padding-left: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  opacity: 0.9;
 }
 
-.aboutList {
-  list-style-type: disc;
-  padding-left: 25px;
-  margin-top: var(--space-md);
+.ctaButton {
+  background: linear-gradient(135deg, var(--primary-accent), var(--primary-hover));
   color: var(--light-text);
-  font-size: 16px;
-  line-height: 1.5;
+  border: none;
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.featureItem {
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Контакты */
+.telegramSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--dark-background);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-accent);
+}
+
+.contactInfo {
+  flex: 1;
+}
+
+.contactTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--primary-accent);
   margin-bottom: var(--space-sm);
 }
 
-.telegramSection {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--space-xl);
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--light-text);
+.contactText {
+  font-size: var(--font-size-sm);
+  color: var(--light-text);
+  opacity: 0.9;
 }
 
 .telegramButton {
@@ -58,15 +283,16 @@
   height: 60px;
   background-color: #0088cc;
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .telegramButton:hover {
   background-color: #0077b3;
   transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .telegramIcon {
@@ -77,12 +303,122 @@
 
 /* Адаптивность */
 @media (max-width: 768px) {
+  .aboutContainer {
+    padding: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .mainTitle {
+    font-size: var(--font-size-xl);
+  }
+
+  .statsSection {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .aboutList {
+    grid-template-columns: 1fr;
+  }
+
+  .previewGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .telegramSection {
+    flex-direction: column;
+    gap: var(--space-lg);
+    text-align: center;
+  }
+
   .telegramButton {
     width: 50px;
     height: 50px;
   }
+
   .telegramIcon {
     width: 24px;
     height: 24px;
+  }
+
+  .featureItem {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-sm);
+  }
+
+  .aboutText {
+    font-size: var(--font-size-md);
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutContainer {
+    padding: var(--space-sm);
+    margin-top: var(--space-sm);
+  }
+
+  .mainTitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .sectionTitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .aboutText {
+    font-size: var(--font-size-sm);
+  }
+
+  .ctaSection {
+    padding: var(--space-lg);
+  }
+
+  .ctaTitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .statsSection {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .statNumber {
+    font-size: 2rem;
+  }
+
+  .previewItem {
+    padding: var(--space-md);
+  }
+
+  .featureItem {
+    padding: var(--space-sm);
+  }
+}
+
+@media (max-width: 360px) {
+  .aboutContainer {
+    margin-top: var(--space-xs);
+  }
+
+  .mainTitle {
+    font-size: var(--font-size-md);
+  }
+
+  .sectionTitle {
+    font-size: var(--font-size-md);
+    padding-left: var(--space-sm);
+  }
+
+  .previewIcon {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-md);
+  }
+
+  .ctaButton {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
   }
 }

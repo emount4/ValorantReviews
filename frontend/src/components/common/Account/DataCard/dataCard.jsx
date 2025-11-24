@@ -1,6 +1,8 @@
+
 import React from "react";
 import styles from "./dataCard.module.css";
 import { useAuth } from "../../../../context/AuthContext";
+import UserStats from "./UserStats"; // Импортируем компонент статистики
 
 const DataCard = () => {
   const { user } = useAuth();
@@ -43,12 +45,17 @@ const DataCard = () => {
         </p>
       </div>
 
-      {/* Вторая карточка без аватара */}
+      {/* Вторая карточка - Уровень профиля */}
       <div className={styles.card}>
         <h2 className={styles.cardHeader}>Уровень профиля</h2>
         <div className={styles.level}>
-          <p>Баллов: здесь будут баллы сообщества</p>
+          <p>Баллов: <span className={styles.pointsValue}>46</span></p>
         </div>
+      </div>
+
+      {/* Третья карточка - Статистика */}
+      <div className={styles.card}>
+        <UserStats user={user} />
       </div>
     </div>
   );

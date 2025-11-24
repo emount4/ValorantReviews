@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CollectionCard.module.css';
 
-const CollectionCard = ({ title, imageUrl, id }) => {
+const CollectionCard = ({ title, imageUrl, id, compact = false, circular = false }) => {
     const navigate = useNavigate();
     const [imageError, setImageError] = useState(false);
     const [imageLoading, setImageLoading] = useState(true);
@@ -36,8 +37,13 @@ const CollectionCard = ({ title, imageUrl, id }) => {
         return imageUrl;
     };
 
+    // Определяем классы в зависимости от пропсов
+    const cardClass = compact ? 
+        (circular ? `${styles.card} ${styles.compact} ${styles.circular}` : `${styles.card} ${styles.compact}`) 
+        : styles.card;
+
     return (
-        <div className={styles.card} onClick={handleCardClick}>
+        <div className={cardClass} onClick={handleCardClick}>
             <div className={styles.imageBox}>
                 {imageLoading && (
                     <div className={styles.imageLoading}>Загрузка...</div>
@@ -51,7 +57,7 @@ const CollectionCard = ({ title, imageUrl, id }) => {
                     loading="lazy"
                 />
                 <div className={styles.bottomBar}>
-                    <div className={styles.ratingBox}>4.5</div>
+                    {!circular && <div className={styles.ratingBox}>4.5</div>}
                     <div className={styles.title}>{title}</div>
                 </div>
             </div>

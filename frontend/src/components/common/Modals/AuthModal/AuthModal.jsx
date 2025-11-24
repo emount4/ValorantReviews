@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from '../Modal.module.css'; 
 import { useAuth } from '../../../../context/AuthContext';
+import { useScrollLock } from "../../../../hooks/useScrollLock";
 
 const AuthModal = ({ isOpen, onClose, onSwitchToRegister }) => {
   const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ const AuthModal = ({ isOpen, onClose, onSwitchToRegister }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
+  useScrollLock(isOpen);
 
   if (!isOpen) return null;
 

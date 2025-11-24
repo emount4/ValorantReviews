@@ -10,7 +10,7 @@ const Footer = () => {
       marginTop: '50px'
     }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <div style={{ color: '#7a7a7a', fontSize: '14px' }}>
+        <div style={{ color: '#b0b0b0', fontSize: '14px' }}>
           © 2025 Valorant Reviews. Данный сайт не связан с Riot Games.
         </div>
       </div>

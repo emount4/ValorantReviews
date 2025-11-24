@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from '../Modal.module.css'; 
 import { useAuth } from '../../../../context/AuthContext';
+import { useScrollLock } from "../../../../hooks/useScrollLock";
 
 const RegistrationModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   const [username, setUsername] = useState('');
@@ -11,6 +12,7 @@ const RegistrationModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const { register } = useAuth();
+  useScrollLock(isOpen);
 
   if (!isOpen) return null;
 

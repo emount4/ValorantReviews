@@ -1,8 +1,25 @@
+
 .card {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   transition: all 0.3s ease;
+  position: relative; /* Добавляем для позиционирования загрузки */
+}
+
+.card.compact {
+  /* Стили для компактной версии */
+  transform: scale(1);
+  transform-origin: center;
+}
+
+.card.compact:hover {
+  transform: scale(1.02);
+}
+
+.card.circular {
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .imageBox {
@@ -15,16 +32,42 @@
   background-color: var(--dark-surface);
   box-shadow: 0 0 8px var(--dark-overlay);
   transition: all 0.3s ease;
-  /* Общая высота карточки адаптивная, но изображение фиксированное 16:9 */
+  height: 100%; /* Занимает всю высоту карточки */
 }
 
 .image {
   width: 100%;
-  height: 180px; /* Фиксированная высота для 16:9 */
+  height: 180px;
   object-fit: cover;
   display: block;
   background-color: var(--dark-background);
   flex-shrink: 0;
+  position: relative; /* Для z-index */
+  z-index: 2; /* Картинка поверх загрузки */
+}
+
+.imageLoading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px; /* Такая же высота как у изображения */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--dark-surface), var(--dark-background));
+  color: var(--placeholder-text);
+  font-size: 1rem;
+  font-weight: 500;
+  z-index: 1; /* Под картинкой */
+  border-radius: 6px 6px 0 0; /* Совпадает с border-radius imageBox */
+}
+
+/* Состояние, когда картинка загрузилась */
+.image.loaded + .imageLoading {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .bottomBar {
@@ -35,9 +78,10 @@
   padding: 12px 10px;
   background-color: var(--dark-background);
   border-top: 1px solid var(--border-accent);
-  /* Высота нижней части как раньше */
   min-height: 60px;
   box-sizing: border-box;
+  position: relative; /* Для z-index */
+  z-index: 3; /* Над всем */
 }
 
 .ratingBox {
@@ -72,7 +116,6 @@
   border-color: var(--primary-accent);
 }
 
-/* Дополнительные эффекты при наведении */
 .card:hover .image {
   filter: brightness(1.05);
 }
@@ -81,16 +124,40 @@
   color: var(--primary-accent);
 }
 
+/* Анимация загрузки */
+.imageLoading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--primary-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* ------- Адаптивные стили ------- */
 @media (max-width: 900px) {
   .image {
-    height: 160px; /* Чуть меньше на планшетах, но сохраняем 16:9 */
+    height: 160px;
+  }
+  .imageLoading {
+    height: 160px;
   }
 }
 
 @media (max-width: 600px) {
   .image {
-    height: 140px; /* Сохраняем пропорции 16:9 на телефонах */
+    height: 140px;
+  }
+  .imageLoading {
+    height: 140px;
+    font-size: 0.9rem;
   }
   
   .bottomBar {
@@ -107,5 +174,122 @@
     height: 22px;
     font-size: 0.85rem;
     line-height: 22px;
+  }
+  
+  .imageLoading::after {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Стили для компактной версии */
+.card.compact .image {
+  height: 80px;
+}
+
+.card.compact .imageLoading {
+  height: 80px;
+  font-size: 0.8rem;
+}
+
+.card.compact .bottomBar {
+  padding: 6px 8px;
+  min-height: 40px;
+}
+
+.card.compact .title {
+  font-size: 0.8rem;
+  margin-left: 4px;
+}
+
+.card.compact .ratingBox {
+  width: 20px;
+  height: 20px;
+  font-size: 0.75rem;
+  line-height: 20px;
+}
+
+.card.compact:hover .imageBox {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(255, 70, 85, 0.3);
+}
+
+/* Стили для круглой версии */
+.card.circular .imageBox {
+  border-radius: 50%;
+  border: 2px solid var(--border-accent);
+}
+
+.card.circular .image {
+  height: 60px;
+  border-radius: 50% 50% 0 0;
+}
+
+.card.circular .imageLoading {
+  height: 60px;
+  border-radius: 50% 50% 0 0;
+  font-size: 0.7rem;
+}
+
+.card.circular .bottomBar {
+  padding: 4px 6px;
+  min-height: 30px;
+  border-radius: 0 0 50% 50%;
+  justify-content: center;
+}
+
+.card.circular .title {
+  font-size: 0.7rem;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.card.circular .ratingBox {
+  display: none; /* Скрываем рейтинг для круглых карточек */
+}
+
+.card.circular:hover .imageBox {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 70, 85, 0.3);
+}
+
+/* Адаптивность для круглых карточек */
+@media (max-width: 1200px) {
+  .card.circular .image {
+    height: 55px;
+  }
+  
+  .card.circular .imageLoading {
+    height: 55px;
+  }
+  
+  .card.circular .bottomBar {
+    min-height: 25px;
+    padding: 3px 5px;
+  }
+  
+  .card.circular .title {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card.circular .image {
+    height: 45px;
+  }
+  
+  .card.circular .imageLoading {
+    height: 45px;
+    font-size: 0.6rem;
+  }
+  
+  .card.circular .bottomBar {
+    min-height: 22px;
+    padding: 2px 4px;
+  }
+  
+  .card.circular .title {
+    font-size: 0.6rem;
   }
 }

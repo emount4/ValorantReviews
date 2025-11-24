@@ -1,0 +1,184 @@
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Карточки будут занимать равную ширину */
+    flex: 1;
+    max-width: 20%; /* 5 карточек = 20% каждая */
+    min-width: 0; /* Важно для правильного сжатия */
+}
+
+.card {
+    /* Размеры будут адаптивными */
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Всегда квадратная */
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    /* border: 2px solid var(--border-accent); */
+    background-color: var(--dark-surface);
+    box-shadow: 0 0 8px var(--dark-overlay);
+    /* Улучшаем рендеринг */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.imageBox {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    /* Улучшаем качество рендеринга */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: var(--dark-background);
+    transition: filter 0.3s ease;
+    /* Критически важные настройки для качества */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Предотвращаем размытие при трансформациях */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000rem;
+}
+
+.image.highQuality {
+    /* Альтернативный подход для некоторых браузеров */
+    image-rendering: auto;
+    -webkit-filter: blur(0);
+    filter: blur(0);
+}
+
+.imageLoading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--dark-surface), var(--dark-background));
+    color: var(--placeholder-text);
+    font-size: 0.7rem;
+    font-weight: 500;
+    border-radius: 50%;
+    /* Улучшаем рендеринг текста */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.title {
+    font-size: clamp(0.55rem, 1.5vw, 0.8rem);
+    font-weight: 600;
+    color: var(--light-text);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    line-height: 1.2;
+    margin: 0;
+    transition: color 0.3s ease;
+    /* Улучшаем рендеринг текста */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cardContainer:hover .card {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 70, 85, 0.3);
+    border-color: var(--primary-accent);
+}
+
+.cardContainer:hover .image {
+    filter: brightness(1.05);
+}
+
+.cardContainer:hover .title {
+    color: var(--primary-accent);
+}
+
+/* Анимация загрузки */
+.imageLoading::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--primary-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 480px) {
+    .cardContainer {
+        gap: 4px;
+    }
+    
+    .title {
+        font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+    }
+    
+    .imageLoading {
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .cardContainer {
+        gap: 2px;
+    }
+    
+    .title {
+        font-size: 0.45rem;
+    }
+}
+
+/* Высокопиксельные дисплеи */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card {
+        /* Увеличиваем резкость для Retina дисплеев */
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+    
+    .image {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Минимальный размер для читаемости */
+@media (max-width: 320px) {
+    .cardContainer {
+        min-width: 45px;
+    }
+    
+    .title {
+        font-size: 0.4rem;
+    }
+}

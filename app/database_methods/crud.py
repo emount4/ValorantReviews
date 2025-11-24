@@ -321,3 +321,93 @@ class CRUD:
             }
         except Exception as e:
             return {"status": "error", "message": f"Error getting column values: {str(e)}"}
+
+    def get_table_data_by_filters(self, table_name: str, filters: Dict[str, Any], limit: int = 100) -> Dict[str, Any]:
+        """Получить данные из таблицы с фильтрацией"""
+        if not self.db.is_connected():
+            self.db.connect()
+
+        try:
+            schema_info = self.get_table_schema(table_name)
+            if schema_info["status"] != "success":
+                return schema_info
+
+            from sqlalchemy import Table, select
+
+            table = Table(table_name, self.db.metadata, autoload_with=self.db.engine)
+            stmt = select(table)
+
+            # Добавляем условия WHERE
+            where_conditions = []
+            for column, value in filters.items():
+                if column in schema_info["schema"]:
+                    where_conditions.append(table.c[column] == value)
+
+            if where_conditions:
+                stmt = stmt.where(*where_conditions)
+
+            stmt = stmt.limit(limit)
+
+            with self.db.engine.begin() as connection:
+                result = connection.execute(stmt)
+                rows = result.fetchall()
+
+            # Форматируем результат
+            columns = list(schema_info["schema"].keys())
+            result_data = []
+            for row in rows:
+                row_dict = {}
+                for i, column_name in enumerate(columns):
+                    row_dict[column_name] = row[i]
+                result_data.append(row_dict)
+
+            return {
+                "status": "success",
+                "table_name": table_name,
+                "filters": filters,
+                "columns": columns,
+                "data": result_data,
+                "row_count": len(result_data),
+                "limit": limit
+            }
+
+        except Exception as e:
+            return {"status": "error", "message": f"Filter data error: {str(e)}"}
+
+    def update_data(self, table_name: str, where_conditions: Dict[str, Any], update_data: Dict[str, Any]) -> Dict[
+        str, Any]:
+        """Обновить данные в таблице"""
+        if not self.db.is_connected():
+            self.db.connect()
+
+        try:
+            schema_info = self.get_table_schema(table_name)
+            if schema_info["status"] != "success":
+                return schema_info
+
+            from sqlalchemy import Table, update
+
+            table = Table(table_name, self.db.metadata, autoload_with=self.db.engine)
+
+            # Создаем условие WHERE
+            where_clauses = []
+            for column, value in where_conditions.items():
+                if column in schema_info["schema"]:
+                    where_clauses.append(table.c[column] == value)
+
+            if not where_clauses:
+                return {"status": "error", "message": "No WHERE conditions provided"}
+
+            stmt = update(table).where(*where_clauses).values(**update_data)
+
+            with self.db.engine.begin() as connection:
+                result = connection.execute(stmt)
+
+            return {
+                "status": "success",
+                "message": f"Successfully updated {result.rowcount} row(s) in {table_name}",
+                "rowcount": result.rowcount
+            }
+
+        except Exception as e:
+            return {"status": "error", "message": f"Update data error: {str(e)}"}

@@ -1,0 +1,90 @@
+
+
+.statsTitle {
+  color: var(--light-text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-md) 0;
+  text-align: center;
+}
+
+.statsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-xs) 0;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--light-text);
+  font-weight: 500;
+}
+
+.statValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-accent);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-accent);
+  margin: var(--space-xs) 0;
+  width: 100%;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .statLabel {
+    font-size: 0.85rem;
+  }
+  
+  .statValue {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .statsTitle {
+    font-size: 1rem;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .statRow {
+    padding: var(--space-xs) 0;
+  }
+  
+  .statLabel {
+    font-size: 0.85rem;
+  }
+  
+  .statValue {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsTitle {
+    font-size: 0.95rem;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .statLabel {
+    font-size: 0.8rem;
+  }
+  
+  .statValue {
+    font-size: 0.85rem;
+  }
+  
+  .statsList {
+    gap: var(--space-xs);
+  }
+}

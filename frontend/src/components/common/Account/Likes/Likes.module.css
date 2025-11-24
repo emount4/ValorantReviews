@@ -1,0 +1,195 @@
+.likesContainer {
+  /* padding: var(--space-md); */
+}
+
+.sectionTitle {
+  color: var(--light-text);
+  margin-bottom: var(--space-lg);
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-xxl);
+  color: var(--placeholder-text);
+  font-style: italic;
+}
+
+.likesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.likedReviewCard {
+  background: var(--dark-surface);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-lg);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.likedReviewCard:hover {
+  border-color: var(--primary-accent);
+  transform: translateY(-2px);
+}
+
+.likedReviewCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary-accent);
+  border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+  gap: var(--space-md);
+}
+
+.collectionInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex: 1;
+}
+
+.collectionImage {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--border-radius-md);
+  object-fit: cover;
+  border: 1px solid var(--border-accent);
+}
+
+.collectionDetails {
+  flex: 1;
+}
+
+.collectionName {
+  color: var(--light-text);
+  margin: 0 0 var(--space-xs) 0;
+  font-size: 1.1rem;
+}
+
+.reviewDate {
+  color: var(--placeholder-text);
+  font-size: 0.8rem;
+}
+
+.scoreBadge {
+  display: flex;
+  align-items: baseline;
+  background: var(--dark-background);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--primary-accent);
+}
+
+.score {
+  color: var(--primary-accent);
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.scoreTotal {
+  color: var(--placeholder-text);
+  font-size: 0.8rem;
+  margin-left: 2px;
+}
+
+.reviewContent {
+  margin-bottom: var(--space-md);
+}
+
+.reviewTitle {
+  color: var(--light-text);
+  margin: 0 0 var(--space-sm) 0;
+  font-size: 1.2rem;
+}
+
+.reviewText {
+  color: var(--light-text);
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.9;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.reviewFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-accent);
+  padding-top: var(--space-sm);
+}
+
+.author {
+  color: var(--placeholder-text);
+  font-size: 0.9rem;
+}
+
+.likeIndicator {
+  color: var(--primary-accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .reviewHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+  }
+  
+  .scoreBadge {
+    align-self: flex-end;
+  }
+  
+  .collectionInfo {
+    gap: var(--space-sm);
+  }
+  
+  .collectionImage {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .collectionName {
+    font-size: 1rem;
+  }
+  
+  .reviewFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .likesContainer {
+    padding: var(--space-sm);
+  }
+  
+  .likedReviewCard {
+    padding: var(--space-md);
+  }
+  
+  .collectionImage {
+    width: 40px;
+    height: 40px;
+  }
+}

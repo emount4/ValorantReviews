@@ -114,8 +114,8 @@ const Header = () => {
                 <span className={styles.userWelcome}>
                   Привет, {user?.username || user?.email?.split("@")[0]}
                 </span>
-                <div className={styles.profileDropdown}>
-                  <NavLink
+                <div className={styles.profileDropdown } >
+                  <div
                     to="/account"
                     className={styles.profileButton}
                     title="Профиль"
@@ -134,20 +134,20 @@ const Header = () => {
                         {getUserInitials()}
                       </div>
                     )}
-                  </NavLink>
+                  </div>
                   <div className={styles.dropdownMenu}>
                     <NavLink
                       to="/account"
                       className={styles.dropdownItem}
                       onClick={closeMobileMenu}
                     >
-                      📱 Профиль
+                       Профиль
                     </NavLink>
                     <button
                       onClick={handleLogout}
                       className={styles.dropdownItem}
                     >
-                      🚪 Выйти
+                       Выйти
                     </button>
                   </div>
                 </div>

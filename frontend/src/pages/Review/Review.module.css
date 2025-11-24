@@ -1,19 +1,18 @@
 /* --- ОБЩИЕ СТИЛИ ФОРМЫ --- */
 .container {
   padding: var(--space-xl);
-  overflow: auto; /* или любое другое значение кроме visible */
-  /* ИЛИ */
+  overflow: auto;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-
-
 .reviewForm {
-  /* padding: var(--space-xl); */
   margin-top: var(--space-lg);
   display: flex;
   gap: var(--space-xl);
-  max-width: 1400px;
-  /* margin: 0 auto; */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .ratingsSection {
@@ -41,15 +40,18 @@
   border-radius: 10px;
   padding: var(--space-md);
   background-color: var(--dark-surface);
-  gap: var(--space-md); /* Увеличили промежуток между секциями */
+  gap: var(--space-md);
+  box-sizing: border-box;
+  transition: all 0.3s ease; /* Добавляем плавный переход */  
 }
 
-.leftSection{
+.leftSection {
   border: 2px solid var(--border-accent);
   border-radius: 12px;
   padding: var(--space-lg);
   background: var(--dark-background);
   max-width: 200px;
+  box-sizing: border-box;
 }
 
 .leftSection h2 {
@@ -117,7 +119,8 @@
   border-radius: 12px;
   padding: var(--space-lg);
   background: var(--dark-background);
-  margin-bottom: var(--space-sm); /* Увеличили отступ снизу */
+  margin-bottom: var(--space-sm);
+  box-sizing: border-box;
 }
 
 .subtitle {
@@ -147,8 +150,8 @@
   font-size: 0.95rem;
   min-width: auto;
   flex-shrink: 0;
-  text-align: left; /* Добавляем выравнивание по левому краю */
-  width: 100%; /* Чтобы текст занимал всю ширину */
+  text-align: left;
+  width: 100%;
 }
 
 .ratingControl {
@@ -209,7 +212,7 @@
   position: relative;
 }
 
-.actionsRow{
+.actionsRow {
   display: flex;
   align-items: center;
   gap: var(--space-md);
@@ -256,6 +259,7 @@
   font-family: inherit;
   box-sizing: border-box;
   position: relative;
+  min-height: 200px;
 
   scrollbar-width: thin;
   scrollbar-color: var(--primary-accent) var(--border-accent);
@@ -318,7 +322,6 @@
 
 /* --- СТИЛИ ДЛЯ КНОПОК И ФУТЕРА --- */
 
-
 .clearButton {
   padding: var(--space-sm) var(--space-lg);
   background: transparent;
@@ -353,13 +356,12 @@
   flex-shrink: 0;
 }
 
-
 .submitButton:hover {
   opacity: 0.9;
   transform: translateY(-2px);
 }
 
-.leftButtons{
+.leftButtons {
   display: flex;
   gap: var(--space-sm);
   order: 2;
@@ -396,13 +398,14 @@
   align-self: flex-start;
 }
 
-.rightButtons{
+.rightButtons {
   display: flex;
   gap: var(--space-sm);
   align-items: center;
   justify-content: flex-end;
   margin-top: var(--space-xs);
 }
+
 .footerNote {
   text-align: center;
   color: var(--placeholder-text);
@@ -411,8 +414,6 @@
   padding-top: var(--space-lg);
   border-top: 1px solid var(--border-accent);
 }
-
-
 
 .mediaBlock {
   display: flex;
@@ -454,16 +455,20 @@
   margin: var(--space-xs) 0 0 0;
 }
 
-.ratingItem{
+.ratingItem {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm); 
+  gap: var(--space-sm);
 }
 
 /* --- АДАПТИВНОСТЬ --- */
 
 /* Планшеты */
 @media (max-width: 1100px) {
+  .container {
+    padding: var(--space-lg);
+  }
+  
   .ratingsSection {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
@@ -487,18 +492,18 @@
 /* Мобильные устройства */
 @media (max-width: 720px) {
   .container {
-    padding: var(--space-sm);
+    padding: var(--space-md);
   }
   
   .reviewForm {
-    padding: var(--space-sm);
-    gap: var(--space-sm);
+    padding: 0;
+    gap: var(--space-md);
     margin-top: var(--space-md);
   }
   
   .rightSection {
-    padding: 8px;
-    gap: var(--space-sm);
+    padding: var(--space-md);
+    gap: var(--space-md);
   }
   
   .ratingsSection {
@@ -508,7 +513,7 @@
   
   .ratingsContainer {
     padding: var(--space-md);
-    margin-bottom: 8px;
+    margin-bottom: var(--space-sm);
   }
   
   .ratingsContainer:last-child .ratingItem {
@@ -550,7 +555,7 @@
     padding: 6px 8px;
     width: 100%;
     text-align: center;
-    white-space: normal; /* Разрешаем перенос текста */
+    white-space: normal;
     word-wrap: break-word;
     height: auto;
     min-height: 32px;
@@ -571,30 +576,29 @@
   .scoreSection {
     order: 3;
     flex: 0 0 auto;
-    margin-left: auto; /* Прижимаем к правому краю */
+    margin-left: auto;
     gap: 6px;
   }
-  
 }
 
 /* Очень маленькие экраны */
 @media (max-width: 480px) {
   .container {
-    padding: 8px;
+    padding: var(--space-sm);
   }
   
   .reviewForm {
-    padding: 8px;
-    gap: var(--space-lg);
+    padding: 0;
+    gap: var(--space-sm);
   }
   
   .rightSection {
-    padding: 6px;
+    padding: var(--space-sm);
   }
   
-  /* .ratingsContainer {
+  .ratingsContainer {
     padding: var(--space-sm);
-  } */
+  }
   
   .clearButton {
     font-size: 0.7rem;
@@ -606,7 +610,7 @@
     gap: 6px;
   }
 
-  .ratingsContainer{
+  .ratingsContainer {
     border: none;
   }
 }
@@ -623,4 +627,209 @@
   padding: var(--space-xxl);
   color: var(--primary-accent);
   font-size: 1.2rem;
+}
+
+/* .existingReviewNote {
+  background-color: var(--primary-accent);
+  color: white;
+  padding: var(--space-md);
+  border-radius: 8px;
+  margin-top: var(--space-md);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submitButton:disabled:hover {
+  opacity: 0.5;
+  transform: none;
+}
+
+.hidden {
+  display: none;
+} */
+
+/* Стили для статуса рецензии */
+.reviewStatus {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.statusCard {
+  border: 2px solid;
+  border-radius: 12px;
+  padding: var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  background: var(--dark-surface);
+  /* max-width: 600px; */
+  width: 100%;
+  text-align: center;
+}
+
+.statusCard.approved {
+  border-color: #10b981;
+  background: linear-gradient(135deg, var(--dark-surface), #10b98115);
+}
+
+.statusCard.pending {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, var(--dark-surface), #f59e0b15);
+}
+
+.statusIcon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.statusContent {
+  flex: 1;
+}
+
+.statusTitle {
+  color: var(--light-text);
+  margin: 0 0 var(--space-sm) 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.statusText {
+  color: var(--light-text);
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+/* Адаптивность для статуса */
+@media (max-width: 1100px) {
+  .statusCard {
+    padding: var(--space-lg);
+    gap: var(--space-md);
+  }
+  
+  .statusTitle {
+    font-size: 1.3rem;
+  }
+  
+  .statusIcon {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviewStatus {
+    min-height: 150px;
+  }
+  
+  .statusCard {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-lg);
+    gap: var(--space-md);
+
+  }
+  
+  .statusIcon {
+    align-self: center;
+    font-size: 1.8rem;
+  }
+  
+  .statusTitle {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-xs);
+  }
+  
+  .statusText {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reviewStatus {
+    min-height: 120px;
+  }
+  
+  .statusCard {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+  
+  .statusIcon {
+    font-size: 1.5rem;
+  }
+  
+  .statusTitle {
+    font-size: 1.1rem;
+  }
+  
+  .statusText {
+    font-size: 0.85rem;
+  }
+}
+
+/* Убедись что правая секция адаптируется правильно */
+@media (max-width: 1100px) {
+  .reviewForm {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .leftSection {
+    max-width: none;
+    order: -1;
+    width: 100%;
+  }
+  
+  .rightSection {
+    width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .reviewForm {
+    gap: var(--space-md);
+  }
+  
+  .rightSection {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .reviewForm {
+    gap: var(--space-sm);
+  }
+  
+  .rightSection {
+    padding: var(--space-sm);
+  }
+}
+
+/* Стили для правой секции когда рецензия отправлена */
+.rightSection.withReview {
+  background: none;
+  border-color: none;
+}
+
+/* Для одобренной рецензии */
+.rightSection.withReview.approved {
+  background: linear-gradient(135deg, var(--dark-surface), #10b98110);
+  border-color: #10b981;
+  border: none;
+}
+
+/* Для рецензии на модерации */
+.rightSection.withReview.pending {
+  background: none;
+  border-color: none;
+  border: none;
 }

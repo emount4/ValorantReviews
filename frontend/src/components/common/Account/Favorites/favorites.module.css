@@ -1,0 +1,79 @@
+
+.favoritesContainer {
+  border: 2px solid var(--border-accent);
+  border-radius: var(--border-radius-md);
+  position: relative;
+  padding: var(--space-lg);
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+}
+
+.favoritesContainer h3 {
+  margin: 0 0 var(--space-md) 0;
+  color: var(--light-text);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.favoritesGrid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  gap: 24px;
+}
+
+.loadingMessage, .emptyMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: var(--placeholder-text);
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Адаптивность - карточки будут уменьшаться пропорционально */
+
+
+
+@media (max-width: 992px) {
+  .favoritesGrid {  
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .favoritesContainer {
+    padding: var(--space-md);
+    min-height: 140px;
+  }
+  
+  .favoritesGrid {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .favoritesGrid {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .favoritesGrid {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 340px){
+    .favoritesGrid{
+      gap: 3px;
+    }
+
+    .favoritesContainer{
+      padding: var(--space-sm);
+    }
+}
