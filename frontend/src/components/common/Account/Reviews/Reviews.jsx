@@ -229,23 +229,23 @@ const Reviews = () => {
                   <div className={styles.categoriesTooltip}>
                     <div className={styles.categoryItem}>
                       <span className={styles.categoryLabel}>Дизайн:</span>
-                      <span className={styles.categoryValue}>{review.design}/10</span>
+                      <span className={styles.categoryValue}>{review.design}</span>
                     </div>
                     <div className={styles.categoryItem}>
                       <span className={styles.categoryLabel}>Звук:</span>
-                      <span className={styles.categoryValue}>{review.sound}/10</span>
+                      <span className={styles.categoryValue}>{review.sound}</span>
                     </div>
                     <div className={styles.categoryItem}>
                       <span className={styles.categoryLabel}>Анимации:</span>
-                      <span className={styles.categoryValue}>{review.animations}/10</span>
+                      <span className={styles.categoryValue}>{review.animations}</span>
                     </div>
                     <div className={styles.categoryItem}>
                       <span className={styles.categoryLabel}>Эффекты:</span>
-                      <span className={styles.categoryValue}>{review.sfx}/10</span>
+                      <span className={styles.categoryValue}>{review.sfx}</span>
                     </div>
                     <div className={styles.categoryItem}>
                       <span className={styles.categoryLabel}>Вайб:</span>
-                      <span className={styles.categoryValue}>{review.vibe}/10</span>
+                      <span className={styles.categoryValue}>{review.vibe}</span>
                     </div>
                   </div>
                 </div>

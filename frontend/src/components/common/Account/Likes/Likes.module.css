@@ -1,6 +1,3 @@
-.likesContainer {
-  /* padding: var(--space-md); */
-}
 
 .sectionTitle {
   color: var(--light-text);
@@ -25,7 +22,7 @@
 .likedReviewCard {
   background: var(--dark-surface);
   border: 1px solid var(--border-accent);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--border-radius-xl);
   padding: var(--space-lg);
   transition: all 0.3s ease;
   position: relative;
@@ -36,16 +33,16 @@
   transform: translateY(-2px);
 }
 
-.likedReviewCard::before {
+/* .likedReviewCard::before {
   content: '';
   position: absolute;
-  top: 0;
+  top: 4px;
   left: 0;
   width: 4px;
-  height: 100%;
+  height: calc(100% - 8px); 
   background: var(--primary-accent);
-  border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
-}
+  border-radius: var(--border-radius-xl) 0  0 var(--border-radius-xl); 
+} */
 
 .reviewHeader {
   display: flex;

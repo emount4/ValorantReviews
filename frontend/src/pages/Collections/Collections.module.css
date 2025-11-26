@@ -42,17 +42,15 @@
 .grid {
   display: grid;
   gap: 20px;
-  /* От 1 до 4 карточек в строке с фиксированным соотношением сторон */
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   justify-items: center;
 }
 
-/* ------ Скелетон ------ */
 .skeleton {
   background-color: var(--dark-surface);
   border-radius: 8px;
   width: 100%;
-  aspect-ratio: 3/4; /* Соотношение сторон как у карточки */
+  aspect-ratio: 3/4; 
   position: relative;
   overflow: hidden;
 }

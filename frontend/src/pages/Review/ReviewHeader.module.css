@@ -117,7 +117,7 @@
 
 @media (max-width: 720px) {
   .headerContainer {
-    margin: var(--space-sm);
+    /* margin: var(--space-sm); */
     margin-bottom: var(--space-md);
   }
   

@@ -1,835 +1,835 @@
-/* --- ОБЩИЕ СТИЛИ ФОРМЫ --- */
-.container {
-  padding: var(--space-xl);
-  overflow: auto;
-  max-width: 1400px;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-.reviewForm {
-  margin-top: var(--space-lg);
-  display: flex;
-  gap: var(--space-xl);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.ratingsSection {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-lg);
-}
-
-.ratingsContainer:last-child .ratingItem {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.ratingsContainer:last-child .ratingControl {
-  flex: 1;
-  max-width: none;
-}
-
-.rightSection {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid var(--border-accent);
-  border-radius: 10px;
-  padding: var(--space-md);
-  background-color: var(--dark-surface);
-  gap: var(--space-md);
-  box-sizing: border-box;
-  transition: all 0.3s ease; /* Добавляем плавный переход */  
-}
-
-.leftSection {
-  border: 2px solid var(--border-accent);
-  border-radius: 12px;
-  padding: var(--space-lg);
-  background: var(--dark-background);
-  max-width: 200px;
-  box-sizing: border-box;
-}
-
-.leftSection h2 {
-  color: var(--primary-accent);
-  margin-bottom: var(--space-md);
-  font-size: 0.8rem;
-}
-
-.leftSection ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.leftSection li {
-  color: var(--light-text);
-  padding: var(--space-xs) 0;
-  font-size: 0.8rem;
-}
-
-.divider {
-  height: 1px;
-  background: var(--border-accent);
-  margin: var(--space-lg) 0;
-}
-
-.checkboxesSection {
-  margin: var(--space-lg) 0;
-}
-
-.checkboxGroup {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.checkboxLabel {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  cursor: pointer;
-  color: var(--light-text);
-  font-size: 1rem;
-}
-
-.checkboxLabel input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--primary-accent);
-}
-
-.checkboxText {
-  font-weight: 500;
-}
-
-/* --- СТИЛИ СЕКЦИИ РЕЙТИНГОВ --- */
-.ratingsSection h3 {
-  color: var(--primary-accent);
-  margin-bottom: var(--space-xs);
-  font-size: 1.3rem;
-}
-
-.ratingsContainer {
-  border: 2px solid var(--border-accent);
-  border-radius: 12px;
-  padding: var(--space-lg);
-  background: var(--dark-background);
-  margin-bottom: var(--space-sm);
-  box-sizing: border-box;
-}
-
-.subtitle {
-  color: var(--placeholder-text);
-  margin-bottom: var(--space-lg);
-  font-style: italic;
-}
-
-.ratingsColumn {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-lg);
-}
-
-.ratingItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
-}
-
-.ratingItem label {
-  color: var(--light-text);
-  font-weight: 600;
-  font-size: 0.95rem;
-  min-width: auto;
-  flex-shrink: 0;
-  text-align: left;
-  width: 100%;
-}
-
-.ratingControl {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  width: 100%;
-}
-
-.ratingSlider {
-  flex: 1;
-  -webkit-appearance: none;
-  height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(
-    to right,
-    var(--primary-accent) 0%,
-    var(--primary-accent) var(--fill-percent),
-    var(--border-accent) var(--fill-percent),
-    var(--border-accent) 100%
-  );
-  outline: none;
-  cursor: pointer;
-}
-
-.ratingSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--primary-accent);
-  cursor: pointer;
-  margin-left: var(--space-xs);
-  border: 2px solid var(--dark-surface);
-}
-
-.ratingSlider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--primary-accent);
-  cursor: pointer;
-  border: none;
-}
-
-.ratingValue {
-  color: var(--primary-accent);
-  font-weight: bold;
-  font-size: 1.1rem;
-  min-width: 20px;
-  text-align: center;
-}
-
-/* --- СТИЛИ ДЛЯ ТЕКСТА РЕЦЕНЗИИ --- */
-.reviewContent {
-  margin: var(--space-md) 0 0 0;
-  position: relative;
-}
-
-.actionsRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  margin-top: var(--space-xs);
-  justify-content: space-between;
-}
-
-.reviewLabel {
-  font-weight: bold;
-  font-size: 1.3rem;
-  color: var(--primary-accent);
-  margin-bottom: var(--space-md);
-  display: block;
-  text-align: left;
-  width: 100%;
-}
-
-.titleInput input {
-  height: var(--space-xxl);
-  width: 100%;
-  padding: var(--space-md);
-  border: 1px solid var(--border-accent);
-  border-radius: 6px;
-  background: var(--dark-background);
-  color: var(--light-text);
-  font-size: 1rem;
-  margin-bottom: var(--space-lg);
-  box-sizing: border-box;
-}
-
-.titleInput input::placeholder {
-  color: var(--placeholder-text);
-}
-
-.textInput textarea {
-  width: 100%;
-  padding: var(--space-md);
-  border: 1px solid var(--border-accent);
-  border-radius: 6px;
-  background: var(--dark-background);
-  color: var(--light-text);
-  font-size: 1rem;
-  resize: vertical;
-  font-family: inherit;
-  box-sizing: border-box;
-  position: relative;
-  min-height: 200px;
-
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-accent) var(--border-accent);
-}
-
-.textInput textarea::-webkit-scrollbar {
-  width: 8px;
-}
-
-.textInput textarea::-webkit-scrollbar-track {
-  background: var(--border-accent);
-  border-radius: 4px;
-}
-
-.textInput textarea::-webkit-scrollbar-thumb {
-  background: var(--primary-accent);
-  border-radius: 4px;
-}
-
-.textInput textarea::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-accent);
-  opacity: 0.8;
-}
-
-.textInput textarea::-webkit-scrollbar-corner {
-  background: var(--dark-background);
-}
-
-.bottomRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: var(--space-xs);
-  margin-bottom: var(--space-sm);
-  gap: var(--space-md);
-  flex-wrap: wrap;
-}
-
-.charCount {
-  color: var(--placeholder-text);
-  font-size: 0.9rem;
-  white-space: nowrap;
-  order: 3;
-  margin-left: auto;
-  border: 2px solid var(--dark-background);
-  border-radius: 10px;
-  padding: var(--space-xs);
-}
-
-.textInput textarea::placeholder {
-  color: var(--placeholder-text);
-}
-
-.charCount {
-  text-align: right;
-  color: var(--placeholder-text);
-  font-size: 0.9rem;
-  margin-top: var(--space-xs);
-}
-
-/* --- СТИЛИ ДЛЯ КНОПОК И ФУТЕРА --- */
-
-.clearButton {
-  padding: var(--space-sm) var(--space-lg);
-  background: transparent;
-  border: 1px solid var(--border-accent);
-  border-radius: 6px;
-  color: var(--light-text);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.clearButton:hover {
-  background: var(--border-accent);
-}
-
-.submitButton {
-  padding: var(--space-sm);
-  background: var(--primary-accent);
-  border: 2px solid black;
-  border-radius: 50%;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  flex-shrink: 0;
-}
-
-.submitButton:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-.leftButtons {
-  display: flex;
-  gap: var(--space-sm);
-  order: 2;
-  flex: 1;
-  justify-content: flex-start;
-}
-
-.scoreCounter {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-  padding: var(--space-sm) var(--space-md);
-}
-
-.scoreSection {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  order: 3;
-  justify-content: flex-end;
-}
-
-.currentScore {
-  color: var(--light-text);
-  font-size: 2.4rem;
-  font-weight: bold;
-  line-height: 1;
-}
-
-.totalScore {
-  color: var(--placeholder-text);
-  font-size: 0.6rem;
-  line-height: 1;
-  align-self: flex-start;
-}
-
-.rightButtons {
-  display: flex;
-  gap: var(--space-sm);
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: var(--space-xs);
-}
-
-.footerNote {
-  text-align: center;
-  color: var(--placeholder-text);
-  font-style: italic;
-  margin-top: var(--space-lg);
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--border-accent);
-}
-
-.mediaBlock {
-  display: flex;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-lg);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.imagePlaceholder,
-.videoPlaceholder {
-  flex: 1 1 300px;
-  height: 180px;
-  background-color: var(--border-accent);
-  border-radius: 10px;
-  color: var(--placeholder-text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  user-select: none;
-  font-style: italic;
-}
-
-.collectionImage {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: var(--space-md);
-}
-
-.collectionInfo h1 {
-  color: var(--light-text);
-  margin: 0;
-}
-
-.collectionInfo p {
-  color: var(--placeholder-text);
-  margin: var(--space-xs) 0 0 0;
-}
-
-.ratingItem {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-/* --- АДАПТИВНОСТЬ --- */
-
-/* Планшеты */
-@media (max-width: 1100px) {
+  /* --- ОБЩИЕ СТИЛИ ФОРМЫ --- */
   .container {
-    padding: var(--space-lg);
+    padding: var(--space-xl);
+    overflow: auto;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
-  
+
+  .reviewForm {
+    margin-top: var(--space-lg);
+    display: flex;
+    gap: var(--space-xl);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .ratingsSection {
-    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-lg);
   }
-  
-  .reviewForm {
-    flex-direction: column;
-    gap: var(--space-lg);
-  }
-  
-  .leftSection {
-    max-width: none;
-    margin-bottom: 0;
-  }
-  
-  .leftSection {
-    order: -1;
-  }
-}
 
-/* Мобильные устройства */
-@media (max-width: 720px) {
-  .container {
-    padding: var(--space-md);
-  }
-  
-  .reviewForm {
-    padding: 0;
-    gap: var(--space-md);
-    margin-top: var(--space-md);
-  }
-  
-  .rightSection {
-    padding: var(--space-md);
-    gap: var(--space-md);
-  }
-  
-  .ratingsSection {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-  }
-  
-  .ratingsContainer {
-    padding: var(--space-md);
-    margin-bottom: var(--space-sm);
-  }
-  
   .ratingsContainer:last-child .ratingItem {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-sm);
-  }
-  
-  .ratingsContainer:last-child .ratingControl {
-    margin-left: 0;
-  }
-  
-  .leftSection {
-    padding: var(--space-md);
-    max-width: none;
-  }
-  
-  /* Адаптивность нижней строки с кнопками */
-  .bottomRow {
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    margin-top: 4px;
   }
-  
-  .leftButtons {
-    order: 1;
-    flex-direction: column;
+
+  .ratingsContainer:last-child .ratingControl {
     flex: 1;
-    min-width: 0;
-    max-width: 50%;
-    gap: 4px;
+    max-width: none;
   }
-  
-  .clearButton {
+
+  .rightSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--border-accent);
+    border-radius: 10px;
+    padding: var(--space-md);
+    background-color: var(--dark-surface);
+    gap: var(--space-md);
+    box-sizing: border-box;
+    transition: all 0.3s ease; /* Добавляем плавный переход */  
+  }
+
+  .leftSection {
+    border: 2px solid var(--border-accent);
+    border-radius: 12px;
+    padding: var(--space-lg);
+    background: var(--dark-background);
+    max-width: 200px;
+    box-sizing: border-box;
+  }
+
+  .leftSection h2 {
+    color: var(--primary-accent);
+    margin-bottom: var(--space-md);
     font-size: 0.8rem;
-    padding: 6px 8px;
+  }
+
+  .leftSection ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .leftSection li {
+    color: var(--light-text);
+    padding: var(--space-xs) 0;
+    font-size: 0.8rem;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border-accent);
+    margin: var(--space-lg) 0;
+  }
+
+  .checkboxesSection {
+    margin: var(--space-lg) 0;
+  }
+
+  .checkboxGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+    color: var(--light-text);
+    font-size: 1rem;
+  }
+
+  .checkboxLabel input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-accent);
+  }
+
+  .checkboxText {
+    font-weight: 500;
+  }
+
+  /* --- СТИЛИ СЕКЦИИ РЕЙТИНГОВ --- */
+  .ratingsSection h3 {
+    color: var(--primary-accent);
+    margin-bottom: var(--space-xs);
+    font-size: 1.3rem;
+  }
+
+  .ratingsContainer {
+    border: 2px solid var(--border-accent);
+    border-radius: 12px;
+    padding: var(--space-lg);
+    background: var(--dark-background);
+    margin-bottom: var(--space-sm);
+    box-sizing: border-box;
+  }
+
+  .subtitle {
+    color: var(--placeholder-text);
+    margin-bottom: var(--space-lg);
+    font-style: italic;
+  }
+
+  .ratingsColumn {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+
+  .ratingItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .ratingItem label {
+    color: var(--light-text);
+    font-weight: 600;
+    font-size: 0.95rem;
+    min-width: auto;
+    flex-shrink: 0;
+    text-align: left;
     width: 100%;
+  }
+
+  .ratingControl {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+  }
+
+  .ratingSlider {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(
+      to right,
+      var(--primary-accent) 0%,
+      var(--primary-accent) var(--fill-percent),
+      var(--border-accent) var(--fill-percent),
+      var(--border-accent) 100%
+    );
+    outline: none;
+    cursor: pointer;
+  }
+
+  .ratingSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-accent);
+    cursor: pointer;
+    margin-left: var(--space-xs);
+    border: 2px solid var(--dark-surface);
+  }
+
+  .ratingSlider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-accent);
+    cursor: pointer;
+    border: none;
+  }
+
+  .ratingValue {
+    color: var(--primary-accent);
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-width: 20px;
     text-align: center;
-    white-space: normal;
-    word-wrap: break-word;
-    height: auto;
-    min-height: 32px;
+  }
+
+  /* --- СТИЛИ ДЛЯ ТЕКСТА РЕЦЕНЗИИ --- */
+  .reviewContent {
+    margin: var(--space-md) 0 0 0;
+    position: relative;
+  }
+
+  .actionsRow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-xs);
+    justify-content: space-between;
+  }
+
+  .reviewLabel {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--primary-accent);
+    margin-bottom: var(--space-md);
+    display: block;
+    text-align: left;
+    width: 100%;
+  }
+
+  .titleInput input {
+    height: var(--space-xxl);
+    width: 100%;
+    padding: var(--space-md);
+    border: 1px solid var(--border-accent);
+    border-radius: 6px;
+    background: var(--dark-background);
+    color: var(--light-text);
+    font-size: 1rem;
+    margin-bottom: var(--space-lg);
+    box-sizing: border-box;
+  }
+
+  .titleInput input::placeholder {
+    color: var(--placeholder-text);
+  }
+
+  .textInput textarea {
+    width: 100%;
+    padding: var(--space-md);
+    border: 1px solid var(--border-accent);
+    border-radius: 6px;
+    background: var(--dark-background);
+    color: var(--light-text);
+    font-size: 1rem;
+    resize: vertical;
+    font-family: inherit;
+    box-sizing: border-box;
+    position: relative;
+    min-height: 200px;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-accent) var(--border-accent);
+  }
+
+  .textInput textarea::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .textInput textarea::-webkit-scrollbar-track {
+    background: var(--border-accent);
+    border-radius: 4px;
+  }
+
+  .textInput textarea::-webkit-scrollbar-thumb {
+    background: var(--primary-accent);
+    border-radius: 4px;
+  }
+
+  .textInput textarea::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-accent);
+    opacity: 0.8;
+  }
+
+  .textInput textarea::-webkit-scrollbar-corner {
+    background: var(--dark-background);
+  }
+
+  .bottomRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-sm);
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .charCount {
+    color: var(--placeholder-text);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    order: 3;
+    margin-left: auto;
+    border: 2px solid var(--dark-background);
+    border-radius: 10px;
+    padding: var(--space-xs);
+  }
+
+  .textInput textarea::placeholder {
+    color: var(--placeholder-text);
+  }
+
+  .charCount {
+    text-align: right;
+    color: var(--placeholder-text);
+    font-size: 0.9rem;
+    margin-top: var(--space-xs);
+  }
+
+  /* --- СТИЛИ ДЛЯ КНОПОК И ФУТЕРА --- */
+
+  .clearButton {
+    padding: var(--space-sm) var(--space-lg);
+    background: transparent;
+    border: 1px solid var(--border-accent);
+    border-radius: 6px;
+    color: var(--light-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .clearButton:hover {
+    background: var(--border-accent);
+  }
+
+  .submitButton {
+    padding: var(--space-sm);
+    background: var(--primary-accent);
+    border: 2px solid black;
+    border-radius: 50%;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
   }
-  
-  .charCount {
-    order: 2;
-    flex: 0 0 auto;
-    text-align: center;
-    margin-left: 0;
-    font-size: 0.8rem;
-    white-space: nowrap;
-  }
-  
-  .scoreSection {
-    order: 3;
-    flex: 0 0 auto;
-    margin-left: auto;
-    gap: 6px;
-  }
-}
 
-/* Очень маленькие экраны */
-@media (max-width: 480px) {
-  .container {
-    padding: var(--space-sm);
+  .submitButton:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
   }
-  
-  .reviewForm {
-    padding: 0;
+
+  .leftButtons {
+    display: flex;
+    gap: var(--space-sm);
+    order: 2;
+    flex: 1;
+    justify-content: flex-start;
+  }
+
+  .scoreCounter {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .scoreSection {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    order: 3;
+    justify-content: flex-end;
+  }
+
+  .currentScore {
+    color: var(--light-text);
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .totalScore {
+    color: var(--placeholder-text);
+    font-size: 0.6rem;
+    line-height: 1;
+    align-self: flex-start;
+  }
+
+  .rightButtons {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: var(--space-xs);
+  }
+
+  .footerNote {
+    text-align: center;
+    color: var(--placeholder-text);
+    font-style: italic;
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-accent);
+  }
+
+  .mediaBlock {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .imagePlaceholder,
+  .videoPlaceholder {
+    flex: 1 1 300px;
+    height: 180px;
+    background-color: var(--border-accent);
+    border-radius: 10px;
+    color: var(--placeholder-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    user-select: none;
+    font-style: italic;
+  }
+
+  .collectionImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: var(--space-md);
+  }
+
+  .collectionInfo h1 {
+    color: var(--light-text);
+    margin: 0;
+  }
+
+  .collectionInfo p {
+    color: var(--placeholder-text);
+    margin: var(--space-xs) 0 0 0;
+  }
+
+  .ratingItem {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-sm);
   }
-  
-  .rightSection {
-    padding: var(--space-sm);
+
+  /* --- АДАПТИВНОСТЬ --- */
+
+  /* Планшеты */
+  @media (max-width: 1100px) {
+    .container {
+      padding: var(--space-lg);
+    }
+    
+    .ratingsSection {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+    
+    .reviewForm {
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    
+    .leftSection {
+      max-width: none;
+      margin-bottom: 0;
+    }
+    
+    .leftSection {
+      order: -1;
+    }
   }
-  
-  .ratingsContainer {
-    padding: var(--space-sm);
+
+  /* Мобильные устройства */
+  @media (max-width: 720px) {
+    .container {
+      padding: var(--space-md);
+    }
+    
+    .reviewForm {
+      padding: 0;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    
+    .rightSection {
+      padding: var(--space-md);
+      gap: var(--space-md);
+    }
+    
+    .ratingsSection {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    
+    .ratingsContainer {
+      padding: var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .ratingsContainer:last-child .ratingItem {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-sm);
+    }
+    
+    .ratingsContainer:last-child .ratingControl {
+      margin-left: 0;
+    }
+    
+    .leftSection {
+      padding: var(--space-md);
+      max-width: none;
+    }
+    
+    /* Адаптивность нижней строки с кнопками */
+    .bottomRow {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    
+    .leftButtons {
+      order: 1;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+      max-width: 50%;
+      gap: 4px;
+    }
+    
+    .clearButton {
+      font-size: 0.8rem;
+      padding: 6px 8px;
+      width: 100%;
+      text-align: center;
+      white-space: normal;
+      word-wrap: break-word;
+      height: auto;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .charCount {
+      order: 2;
+      flex: 0 0 auto;
+      text-align: center;
+      margin-left: 0;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+    
+    .scoreSection {
+      order: 3;
+      flex: 0 0 auto;
+      margin-left: auto;
+      gap: 6px;
+    }
   }
-  
-  .clearButton {
-    font-size: 0.7rem;
-    padding: 4px 6px;
-    min-height: 28px;
+
+  /* Очень маленькие экраны */
+  @media (max-width: 480px) {
+    .container {
+      padding: var(--space-sm);
+    }
+    
+    .reviewForm {
+      padding: 0;
+      gap: var(--space-sm);
+    }
+    
+    .rightSection {
+      padding: var(--space-sm);
+    }
+    
+    .ratingsContainer {
+      padding: var(--space-sm);
+    }
+    
+    .clearButton {
+      font-size: 0.7rem;
+      padding: 4px 6px;
+      min-height: 28px;
+    }
+    
+    .bottomRow {
+      gap: 6px;
+    }
+
+    .ratingsContainer {
+      border: none;
+    }
   }
-  
-  .bottomRow {
-    gap: 6px;
-  }
 
-  .ratingsContainer {
-    border: none;
-  }
-}
-
-.loading {
-  text-align: center;
-  padding: var(--space-xxl);
-  color: var(--light-text);
-  font-size: 1.2rem;
-}
-
-.error {
-  text-align: center;
-  padding: var(--space-xxl);
-  color: var(--primary-accent);
-  font-size: 1.2rem;
-}
-
-/* .existingReviewNote {
-  background-color: var(--primary-accent);
-  color: white;
-  padding: var(--space-md);
-  border-radius: 8px;
-  margin-top: var(--space-md);
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.submitButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.submitButton:disabled:hover {
-  opacity: 0.5;
-  transform: none;
-}
-
-.hidden {
-  display: none;
-} */
-
-/* Стили для статуса рецензии */
-.reviewStatus {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.statusCard {
-  border: 2px solid;
-  border-radius: 12px;
-  padding: var(--space-xl);
-  display: flex;
-  align-items: center;
-  gap: var(--space-lg);
-  background: var(--dark-surface);
-  /* max-width: 600px; */
-  width: 100%;
-  text-align: center;
-}
-
-.statusCard.approved {
-  border-color: #10b981;
-  background: linear-gradient(135deg, var(--dark-surface), #10b98115);
-}
-
-.statusCard.pending {
-  border-color: #f59e0b;
-  background: linear-gradient(135deg, var(--dark-surface), #f59e0b15);
-}
-
-.statusIcon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
-}
-
-.statusContent {
-  flex: 1;
-}
-
-.statusTitle {
-  color: var(--light-text);
-  margin: 0 0 var(--space-sm) 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-}
-
-.statusText {
-  color: var(--light-text);
-  margin: 0;
-  opacity: 0.9;
-  line-height: 1.5;
-  font-size: 1rem;
-}
-
-/* Адаптивность для статуса */
-@media (max-width: 1100px) {
-  .statusCard {
-    padding: var(--space-lg);
-    gap: var(--space-md);
-  }
-  
-  .statusTitle {
-    font-size: 1.3rem;
-  }
-  
-  .statusIcon {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .reviewStatus {
-    min-height: 150px;
-  }
-  
-  .statusCard {
-    flex-direction: column;
+  .loading {
     text-align: center;
-    padding: var(--space-lg);
-    gap: var(--space-md);
-
-  }
-  
-  .statusIcon {
-    align-self: center;
-    font-size: 1.8rem;
-  }
-  
-  .statusTitle {
+    padding: var(--space-xxl);
+    color: var(--light-text);
     font-size: 1.2rem;
-    margin-bottom: var(--space-xs);
   }
-  
-  .statusText {
+
+  .error {
+    text-align: center;
+    padding: var(--space-xxl);
+    color: var(--primary-accent);
+    font-size: 1.2rem;
+  }
+
+  /* .existingReviewNote {
+    background-color: var(--primary-accent);
+    color: white;
+    padding: var(--space-md);
+    border-radius: 8px;
+    margin-top: var(--space-md);
+    text-align: center;
     font-size: 0.9rem;
   }
-}
 
-@media (max-width: 480px) {
+  .submitButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .submitButton:disabled:hover {
+    opacity: 0.5;
+    transform: none;
+  }
+
+  .hidden {
+    display: none;
+  } */
+
+  /* Стили для статуса рецензии */
   .reviewStatus {
-    min-height: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  
+
   .statusCard {
-    padding: var(--space-md);
-    gap: var(--space-sm);
-  }
-  
-  .statusIcon {
-    font-size: 1.5rem;
-  }
-  
-  .statusTitle {
-    font-size: 1.1rem;
-  }
-  
-  .statusText {
-    font-size: 0.85rem;
-  }
-}
-
-/* Убедись что правая секция адаптируется правильно */
-@media (max-width: 1100px) {
-  .reviewForm {
-    flex-direction: column;
+    border: 2px solid;
+    border-radius: 12px;
+    padding: var(--space-xl);
+    display: flex;
+    align-items: center;
     gap: var(--space-lg);
-  }
-  
-  .leftSection {
-    max-width: none;
-    order: -1;
+    background: var(--dark-surface);
+    /* max-width: 600px; */
     width: 100%;
+    text-align: center;
+    margin: 0 auto;
   }
-  
-  .rightSection {
-    width: 100%;
-  }
-}
 
-@media (max-width: 720px) {
-  .reviewForm {
-    gap: var(--space-md);
+  .statusCard.approved {
+    border-color: #10b981;
+    background: linear-gradient(135deg, var(--dark-surface), #10b98115);
   }
-  
-  .rightSection {
-    padding: var(--space-md);
+
+  .statusCard.pending {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, var(--dark-surface), #f59e0b15);
   }
-}
 
-@media (max-width: 480px) {
-  .reviewForm {
-    gap: var(--space-sm);
+  .statusIcon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
   }
-  
-  .rightSection {
-    padding: var(--space-sm);
+
+  .statusContent {
+    flex: 1;
   }
-}
 
-/* Стили для правой секции когда рецензия отправлена */
-.rightSection.withReview {
-  background: none;
-  border-color: none;
-}
+  .statusTitle {
+    color: var(--light-text);
+    margin: 0 0 var(--space-sm) 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
 
-/* Для одобренной рецензии */
-.rightSection.withReview.approved {
-  background: linear-gradient(135deg, var(--dark-surface), #10b98110);
-  border-color: #10b981;
-  border: none;
-}
+  .statusText {
+    color: var(--light-text);
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
 
-/* Для рецензии на модерации */
-.rightSection.withReview.pending {
-  background: none;
-  border-color: none;
-  border: none;
-}
+  /* Адаптивность для статуса */
+  @media (max-width: 1100px) {
+    .statusCard {
+      padding: var(--space-lg);
+      gap: var(--space-md);
+    }
+    
+    .statusTitle {
+      font-size: 1.3rem;
+    }
+    
+    .statusIcon {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .reviewStatus {
+      min-height: 150px;
+    }
+    
+    .statusCard {
+      flex-direction: column;
+      text-align: center;
+      padding: var(--space-lg);
+      gap: var(--space-md);
+
+    }
+    
+    .statusIcon {
+      align-self: center;
+      font-size: 1.8rem;
+    }
+    
+    .statusTitle {
+      font-size: 1.2rem;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .statusText {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .reviewStatus {
+      min-height: 120px;
+    }
+    
+    .statusCard {
+      padding: var(--space-md);
+      gap: var(--space-sm);
+    }
+    
+    .statusIcon {
+      font-size: 1.5rem;
+    }
+    
+    .statusTitle {
+      font-size: 1.1rem;
+    }
+    
+    .statusText {
+      font-size: 0.85rem;
+    }
+  }
+
+  /* Убедись что правая секция адаптируется правильно */
+  @media (max-width: 1100px) {
+    .reviewForm {
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    
+    .leftSection {
+      max-width: none;
+      order: -1;
+      width: 100%;
+    }
+    
+    .rightSection {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .reviewForm {
+      gap: var(--space-md);
+    }
+    
+
+    .rightSection {
+      padding: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .reviewForm {
+      gap: var(--space-sm);
+    }
+    
+    .rightSection {
+      padding: var(--space-sm);
+    }
+  }
+
+  /* Стили для правой секции когда рецензия отправлена */
+  .rightSection.withReview {
+    background: none;
+    border-color: none;
+  }
+
+  /* Для одобренной рецензии */
+  .rightSection.withReview.approved {
+    border: none;
+  }
+
+  /* Для рецензии на модерации */
+  .rightSection.withReview.pending {
+    background: none;
+    border-color: none;
+    border: none;
+  }
