@@ -27,13 +27,11 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/collections" element={<Collections />} />
-          <Route path="/reviews/:collectionId" element={<ReviewsPage />} /> {/* ← Добавь этот маршрут */}
+          <Route path="/reviews/:collectionId" element={<ReviewsPage />} />
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
             <Route path="/account" element={<AccountPage user={user} />} />
-            {/* Другие защищённые маршруты здесь */}
           </Route>
 
-          {/* Можно добавить страницу 404 */}
         </Routes>
       </main>
       <Footer />

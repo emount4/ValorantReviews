@@ -1,5 +1,8 @@
 .reviewsContainer {
-  overflow-x: hidden;}
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
 .loading {
   text-align: center;

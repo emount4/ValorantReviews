@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Функция для получения данных пользователя по токену
   const fetchUserData = async (token) => {
     try {
       const res = await fetch("http://localhost:8000/auth/me", {
@@ -34,13 +33,11 @@ export const AuthProvider = ({ children }) => {
     const initializeAuth = async () => {
       const t = localStorage.getItem("access_token");
       if (t) {
-        // Получаем реальные данные пользователя из БД
         const userData = await fetchUserData(t);
         if (userData.success) {
           setToken(t);
           setUser(userData.user);
         } else {
-          // Если токен невалидный, очищаем
           localStorage.removeItem("access_token");
         }
       }
@@ -56,7 +53,7 @@ export const AuthProvider = ({ children }) => {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({ 
-          username: email,  // Здесь ОК - FastAPI OAuth2 ожидает username поле
+          username: email,  
           password: password 
         }).toString(),
       });
@@ -74,7 +71,7 @@ export const AuthProvider = ({ children }) => {
           // Fallback - если endpoint /auth/me не работает
           setUser({ 
             email: email, 
-            username: email.split('@')[0] // Временное решение
+            username: email.split('@')[0] 
           });
         }
         
@@ -167,7 +164,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
+export const useAuth = () => {  
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');

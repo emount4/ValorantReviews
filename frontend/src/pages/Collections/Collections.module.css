@@ -38,7 +38,6 @@
   color: var(--placeholder-text);
 }
 
-/* ------ Адаптивная сетка ------ */
 .grid {
   display: grid;
   gap: 20px;
@@ -72,12 +71,6 @@
   }
 }
 
-/* ------ Адаптивность ------ */
-@media (max-width: 1200px) {
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-}
 
 @media (max-width: 768px) {
   .container {
@@ -97,12 +90,11 @@
   }
   
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 605px) {
   .container {
     margin: 12px auto;
     padding: 0 10px;
@@ -113,14 +105,11 @@
   }
   
   .searchInput {
-    /* margin: 16px;   */
     padding: 8px 12px;
-    min-width: 300px;
+    min-width: 280px;
   }
   
-  /* На телефонах - 1 карточка крупно */
   .grid {
-    grid-template-columns: 1fr;
     gap: 12px;
     max-width: 400px;
     margin: 0 auto;
@@ -139,4 +128,93 @@
   padding: var(--space-xxl);
   color: var(--primary-accent);
   font-size: 1.2rem;
+}
+
+/* Существующие стили остаются */
+
+.loadMoreContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 20px 0;
+}
+
+.loadMoreButton {
+  padding: 12px 30px;
+  background: var(--primary-accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+}
+
+.loadMoreButton:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.loadMoreButton:disabled {
+  background: var(--gray-light);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.resultsInfo {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--light-text);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.allLoaded {
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px;
+  color: var(--light-text);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.noResults {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--light-text);
+  opacity: 0.7;
+  font-size: 1.1rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .loadMoreContainer {
+    margin-top: 20px;
+    padding: 15px 0;
+  }
+  
+  .loadMoreButton {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loadMoreContainer {
+    margin-top: 15px;
+    padding: 10px 0;
+  }
+  
+  .loadMoreButton {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    min-width: 120px;
+  }
+  
+  .resultsInfo {
+    font-size: 0.8rem;
+  }
 }

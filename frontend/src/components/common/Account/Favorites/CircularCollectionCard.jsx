@@ -30,7 +30,6 @@ const CircularCollectionCard = ({ title, imageUrl, id }) => {
         setImageLoading(false);
         setImageError(false);
         
-        // Автоматически определяем качество изображения
         const img = e.target;
         if (img.naturalWidth >= 200 && img.naturalHeight >= 200) {
             setImageQuality('highQuality');
@@ -42,7 +41,6 @@ const CircularCollectionCard = ({ title, imageUrl, id }) => {
             return "/placeholder-collection.jpg";
         }
         
-        // Для внешних URL возвращаем как есть
         if (imageUrl.startsWith('http')) {
             return imageUrl;
         }
@@ -64,9 +62,7 @@ const CircularCollectionCard = ({ title, imageUrl, id }) => {
                         onLoad={handleImageLoad}
                         onError={handleImageError}
                         loading="lazy"
-                        // Оптимизация для быстрой загрузки
                         decoding="async"
-                        // Указываем размеры для предотвращения layout shift
                         width="100"
                         height="100"
                     />

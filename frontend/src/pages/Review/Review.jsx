@@ -28,7 +28,6 @@ const ReviewsPage = () => {
     },
   });
 
-  // 🔥 ФУНКЦИИ ПЕРЕМЕЩЕНЫ ВВЕРХ ДО ИХ ИСПОЛЬЗОВАНИЯ
   // Проверка авторизации
   const isAuthenticated = () => {
     const token = localStorage.getItem("access_token");
@@ -67,7 +66,7 @@ const ReviewsPage = () => {
 
   // Загрузка данных о коллекции и существующих отзывах при монтировании компонента
   useEffect(() => {
-    console.log("🚀 ReviewsPage component MOUNTED");
+    console.log("ReviewsPage component MOUNTED");
     console.log("collectionId:", collectionId);
     console.log("isAuthenticated:", isAuthenticated());
     
@@ -75,14 +74,11 @@ const ReviewsPage = () => {
       try {
         setLoading(true);
         
-        // Пытаемся получить данные из state навигации
         const navigationData = location.state?.collectionData;
         
         if (navigationData) {
-          // Если данные пришли из navigate - используем их
           setCollection(navigationData);
         } else {
-          // Иначе загружаем по API
           const collectionResponse = await fetch(
             `http://localhost:8000/crud_router/table-data/Collections/column/${collectionId}?column=id&limit=1`
           );
@@ -148,7 +144,7 @@ const ReviewsPage = () => {
     }
   }, [collectionId, location.state]);
 
-  // Обработчик изменения ползунков (рейтингов)
+  // Обработчик изменения ползунков
   const handleRatingChange = (category, value) => {
     setFormData({
       ...formData,
@@ -156,7 +152,7 @@ const ReviewsPage = () => {
     });
   };
 
-  // Обработчик изменения текстовых полей (заголовок и текст)
+  // Обработчик изменения текстовых полей 
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
   };
@@ -181,14 +177,11 @@ const ReviewsPage = () => {
     return `${((value - 1) / 9) * 100}%`;
   };
 
-  // Функция для подсчета общего балла по формуле
+  // Функция для подсчета общего балла 
   const calculateTotalScore = () => {
     const { design, sfx, animations, sound, vibe } = formData.ratings;
 
-    // Линейный множитель для вайба: от 1 (при vibe=1) до 1.6 (при vibe=10)
     const vibeMultiplier = 1 + (vibe - 1) * (0.6 / 9);
-
-    // Формула: (сумма 4 параметров без вайба) * 1.4 * множитель_вайба
     const sumWithoutVibe = design + sfx + animations + sound;
     const totalScore = sumWithoutVibe * 1.4 * vibeMultiplier;
 
@@ -199,14 +192,6 @@ const ReviewsPage = () => {
 
   // Обработчик клика по кнопке отправки
   const handleSubmitClick = (e) => {
-    console.log("🖱️ Клик по кнопке отправки");
-    console.log("📊 Состояние кнопки:", {
-      isAuthenticated: isAuthenticated(),
-      isFormValid: isFormValid(),
-      isSubmitButtonActive: isSubmitButtonActive(),
-      textLength: formData.text.length,
-      title: formData.title
-    });
     
     if (isSubmitButtonActive()) {
       submitReview();
@@ -221,7 +206,6 @@ const ReviewsPage = () => {
   const submitReview = async () => {
     console.log("🟢 Начинаем отправку рецензии...");
     
-    // Проверка авторизации
     if (!isAuthenticated()) {
       console.log("❌ Пользователь не авторизован");
       showError(
@@ -279,7 +263,7 @@ const ReviewsPage = () => {
         vibe: formData.ratings.vibe
       };
 
-      console.log("📤 Данные для отправки:", reviewData);
+      console.log(" Данные для отправки:", reviewData);
 
       const response = await fetch("http://localhost:8000/reviews/", {
         method: "POST",
@@ -290,26 +274,26 @@ const ReviewsPage = () => {
         body: JSON.stringify(reviewData)
       });
 
-      console.log("📨 Получен ответ, статус:", response.status);
+      console.log(" Получен ответ, статус:", response.status);
 
       // Получаем текст ответа для отладки
       const responseText = await response.text();
-      console.log("📨 Текст ответа:", responseText);
+      console.log(" Текст ответа:", responseText);
 
       let result;
       try {
         result = JSON.parse(responseText);
       } catch (e) {
-        console.error("❌ Ошибка парсинга JSON:", e);
+        console.error(" Ошибка парсинга JSON:", e);
         throw new Error(`Некорректный ответ от сервера: ${responseText}`);
       }
 
       if (!response.ok) {
-        console.error("❌ Ошибка от сервера:", result);
+        console.error(" Ошибка от сервера:", result);
         throw new Error(result.detail || result.message || `Ошибка HTTP: ${response.status}`);
       }
 
-      console.log("✅ Успешный ответ от сервера:", result);
+      console.log(" Успешный ответ от сервера:", result);
       
       // Обновляем данные о существующей рецензии
       if (result.review_id) {
@@ -336,7 +320,6 @@ const ReviewsPage = () => {
     } catch (error) {
       console.error("❌ Ошибка отправки рецензии:", error);
       
-      // Более детальные сообщения об ошибках
       let errorMessage = error.message;
       let errorTitle = "Ошибка отправки";
       

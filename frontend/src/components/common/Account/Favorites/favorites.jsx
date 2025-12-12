@@ -7,11 +7,9 @@ const Favorites = () => {
   const [favoriteCollections, setFavoriteCollections] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Заглушка - имитация загрузки избранных коллекций
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        // Временные данные для демонстрации
         const mockFavorites = [
           {
             id: 1,

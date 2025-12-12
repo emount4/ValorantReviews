@@ -1,4 +1,3 @@
-  /* --- ОБЩИЕ СТИЛИ ФОРМЫ --- */
   .container {
     padding: var(--space-xl);
     overflow: auto;
@@ -321,6 +320,22 @@
   }
 
   /* --- СТИЛИ ДЛЯ КНОПОК И ФУТЕРА --- */
+  .authLink{
+    border: 2px solid var(--border-accent);
+    border-radius: var(--border-radius-md);
+    background-color: var(--dark-background);
+    color: var(--light-text);
+    padding: var(--space-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .authLink:hover{
+    background-color: var(--border-accent);
+    opacity: 0.9;
+  }
 
   .clearButton {
     padding: var(--space-sm) var(--space-lg);

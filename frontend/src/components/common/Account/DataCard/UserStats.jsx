@@ -3,7 +3,6 @@ import React from "react";
 import styles from "./UserStats.module.css";
 
 const UserStats = ({ user }) => {
-  // Заглушка данных пользователя
   const userStats = {
     reviewsCount: 24,
     ratingsWithoutReview: 156,

@@ -1,7 +1,5 @@
-// Константы и утилиты для аутентификации
 export const API_BASE_URL = "http://localhost:8000";
 
-// Функция для получения данных пользователя
 export const fetchUserData = async (token) => {
   try {
     const res = await fetch(`${API_BASE_URL}/protected`, {
@@ -27,7 +25,6 @@ export const fetchUserData = async (token) => {
   }
 };
 
-// Функция для логина
 export const loginUser = async (email, password) => {
   try {
     const res = await fetch(`${API_BASE_URL}/auth/token`, {
@@ -51,7 +48,6 @@ export const loginUser = async (email, password) => {
   }
 };
 
-// Функция для регистрации
 export const registerUser = async (username, email, password) => {
   try {
     const res = await fetch(`${API_BASE_URL}/auth/register`, {

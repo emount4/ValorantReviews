@@ -51,7 +51,7 @@ const Reviews = () => {
                 const collectionData = await collectionResponse.json();
                 if (collectionData.data && collectionData.data.length > 0) {
                   const collection = collectionData.data[0];
-                  console.log("Collection data:", collection); // Отладка
+                  console.log("Collection data:", collection); 
                   return {
                     ...review,
                     collection: {
@@ -81,7 +81,6 @@ const Reviews = () => {
     }
   };
 
-  // Функция для форматирования даты
   const formatDate = (dateString) => {
     if (!dateString) return "Дата не указана";
     
@@ -97,20 +96,18 @@ const Reviews = () => {
     }
   };
 
-  // Функция для получения URL изображения - ТАК ЖЕ КАК В CircularCollectionCard
+  // Функция для получения URL изображения 
   const getOptimizedImageUrl = (imageUrl, reviewId) => {
-    console.log("Getting image URL:", imageUrl, "for review:", reviewId); // Отладка
+    console.log("Getting image URL:", imageUrl, "for review:", reviewId); 
     
     if (imageErrors.has(reviewId) || !imageUrl) {
       return "/placeholder-collection.jpg";
     }
     
-    // Для внешних URL возвращаем как есть
     if (imageUrl.startsWith('http')) {
       return imageUrl;
     }
     
-    // Если это относительный путь, добавляем базовый URL
     if (imageUrl.startsWith('/')) {
       return `http://localhost:8000${imageUrl}`;
     }
@@ -142,12 +139,10 @@ const Reviews = () => {
     navigate(`/reviews/${collectionId}`);
   };
 
-  // Функция для проверки, нужно ли показывать кнопку "Развернуть"
   const shouldShowExpandButton = (content) => {
     return content && content.length > 200;
   };
 
-  // Функция для получения укороченного текста
   const getShortenedText = (text) => {
     if (!text) return "";
     return text.length > 200 ? text.substring(0, 200) + "..." : text;

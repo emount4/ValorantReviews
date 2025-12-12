@@ -40,7 +40,6 @@ const Header = () => {
     closeMobileMenu();
   };
 
-  // Функция для получения инициалов пользователя
   const getUserInitials = () => {
     if (!user?.username && !user?.email) return "U";
 
@@ -48,7 +47,6 @@ const Header = () => {
     return name.charAt(0).toUpperCase();
   };
 
-  // Функция для получения цвета аватарки на основе имени пользователя
   const getAvatarColor = () => {
     const name = user?.username || user?.email || "user";
     const colors = [
@@ -77,7 +75,6 @@ const Header = () => {
             </NavLink>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className={styles.nav}>
             <ul>
               <li>
@@ -167,7 +164,6 @@ const Header = () => {
             )}
           </div>
 
-          {/* Mobile Menu Button and Single Auth Button */}
           <div className={styles.mobileHeaderControls}>
             {isAuthenticated ? (
               <div className={styles.mobileUserInfo}>
@@ -194,7 +190,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
         <div
           className={`${styles.mobileMenu} ${
             isMobileMenuOpen ? styles.mobileMenuOpen : ""
@@ -255,7 +250,6 @@ const Header = () => {
             </ul>
           </nav>
 
-          {/* Mobile Registration Link */}
           {!isAuthenticated && (
             <div className={styles.mobileRegistration}>
               <p>Нет аккаунта?</p>
@@ -269,13 +263,11 @@ const Header = () => {
           )}
         </div>
 
-        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div className={styles.overlay} onClick={closeMobileMenu}></div>
         )}
       </div>
 
-      {/* Модалки */}
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={closeAllModals}

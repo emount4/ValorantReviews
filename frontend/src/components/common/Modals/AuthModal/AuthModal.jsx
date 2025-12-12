@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import ReactDOM from 'react-dom';
 import styles from '../Modal.module.css'; 
 import { useAuth } from '../../../../context/AuthContext';
@@ -11,6 +11,22 @@ const AuthModal = ({ isOpen, onClose, onSwitchToRegister }) => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   useScrollLock(isOpen);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEsc);
+    
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -33,7 +49,13 @@ const AuthModal = ({ isOpen, onClose, onSwitchToRegister }) => {
   return ReactDOM.createPortal(
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={e => e.stopPropagation()} role="dialog" aria-modal="true">
-        <button className={styles.modalCloseBtn} onClick={onClose}>×</button>
+        <button 
+          className={styles.modalCloseBtn} 
+          onClick={onClose}
+          aria-label="Закрыть модальное окно"
+        >
+          ×
+        </button>
 
         <h2>Авторизация</h2>
         <form onSubmit={handleSubmit}>

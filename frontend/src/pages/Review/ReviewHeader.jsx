@@ -5,20 +5,17 @@ import styles from "./ReviewHeader.module.css";
 const ReviewHeader = () => {
   const [collection, setCollection] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { collectionId } = useParams(); // ИЗМЕНИЛ id на collectionId
+  const { collectionId } = useParams(); 
   const location = useLocation();
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
-  // Пытаемся получить данные из state навигации
   const navigationData = location.state?.collectionData;
 
   useEffect(() => {
     if (navigationData) {
-      // Если данные пришли из navigate - используем их
       setCollection(navigationData);
-    } else if (collectionId) { // ДОБАВИЛ проверку на существование collectionId
-      // Иначе загружаем по API
+    } else if (collectionId) { 
       fetch(`http://localhost:8000/crud_router/table-data/Collections/column/${collectionId}?column=id&limit=1`)
         .then((res) => res.json())
         .then((data) => {
@@ -28,16 +25,13 @@ const ReviewHeader = () => {
         })
         .catch((err) => console.error("Ошибка загрузки коллекции:", err));
     }
-  }, [collectionId, navigationData]); // ИЗМЕНИЛ зависимость на collectionId
+  }, [collectionId, navigationData]);
 
-  // Функция для получения URL картинки
   const getImageUrl = (imagePath) => {
     if (!imagePath) return "/placeholder.jpg";
     
-    // Если это уже полный URL, возвращаем как есть
     if (imagePath.startsWith('http')) return imagePath;
     
-    // Если это API путь, делаем полный URL
     if (imagePath.startsWith('/')) {
       return `http://localhost:8000${imagePath}`;
     }
@@ -55,7 +49,6 @@ const ReviewHeader = () => {
     setCurrentIndex((prev) => (prev - 1 + contentTypes.length) % contentTypes.length);
   };
 
-  // Обработчики для свайпа
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -68,19 +61,16 @@ const ReviewHeader = () => {
     if (!touchStartX.current || !touchEndX.current) return;
 
     const diff = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 50; // минимальное расстояние для свайпа
+    const minSwipeDistance = 50;
 
     if (Math.abs(diff) > minSwipeDistance) {
       if (diff > 0) {
-        // Свайп влево - следующее
         next();
       } else {
-        // Свайп вправо - предыдущее
         prev();
       }
     }
 
-    // Сброс значений
     touchStartX.current = 0;
     touchEndX.current = 0;
   };
@@ -137,7 +127,6 @@ const ReviewHeader = () => {
         <h1>{collection.display_name}</h1>
       </div>
 
-      {/* Индикаторы свайпа для мобильных */}
       <div className={styles.swipeIndicators}>
         <span className={styles.swipeHint}>← Свайп для навигации →</span>
       </div>

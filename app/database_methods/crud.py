@@ -411,3 +411,68 @@ class CRUD:
 
         except Exception as e:
             return {"status": "error", "message": f"Update data error: {str(e)}"}
+
+    def get_table_data_paginated(self, table_name: str, page: int = 1, limit: int = 12,
+                                 filters: Dict[str, Any] = None) -> Dict[str, Any]:
+        """Получить данные из таблицы с пагинацией"""
+        if not self.db.is_connected():
+            self.db.connect()
+
+        try:
+            from sqlalchemy import Table, select, func
+
+            table = Table(table_name, self.db.metadata, autoload_with=self.db.engine)
+
+            # Вычисляем offset
+            offset = (page - 1) * limit
+
+            # Запрос для данных
+            stmt = select(table)
+
+            # Добавляем фильтры если есть
+            if filters:
+                where_conditions = []
+                for column, value in filters.items():
+                    if hasattr(table.c, column):
+                        where_conditions.append(table.c[column].ilike(value))
+                if where_conditions:
+                    stmt = stmt.where(*where_conditions)
+
+            # Применяем пагинацию
+            stmt = stmt.offset(offset).limit(limit)
+
+            # Запрос для общего количества
+            count_stmt = select(func.count()).select_from(table)
+            if filters:
+                where_conditions = []
+                for column, value in filters.items():
+                    if hasattr(table.c, column):
+                        where_conditions.append(table.c[column].ilike(value))
+                if where_conditions:
+                    count_stmt = count_stmt.where(*where_conditions)
+
+            with self.db.engine.begin() as connection:
+                # Получаем данные
+                result = connection.execute(stmt)
+                data = []
+                for row in result:
+                    data.append(dict(row._mapping))
+
+                # Получаем общее количество
+                total_count = connection.execute(count_stmt).scalar()
+
+            has_more = (page * limit) < total_count
+
+            return {
+                "status": "success",
+                "table_name": table_name,
+                "data": data,
+                "total": total_count,
+                "page": page,
+                "limit": limit,
+                "has_more": has_more,
+                "offset": offset
+            }
+
+        except Exception as e:
+            return {"status": "error", "message": f"Paginated data error: {str(e)}"}

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './favorites.module.css'
 
-const FavCard = () => {
+const FavCardSection = () => {
 //   const { user } = useAuth;
 return(
     <div className={styles.container}>
@@ -10,4 +10,4 @@ return(
 )
 };
 
-export default FavCard;
+export default FavCardSection;

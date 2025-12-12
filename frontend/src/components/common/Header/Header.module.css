@@ -1,4 +1,3 @@
-/* ===== VARIABLES (Consistent with global styles) ===== */
 :root {
   --header-bg: var(--dark-surface);
   --header-border: var(--primary-accent);
@@ -12,7 +11,6 @@
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== HEADER LAYOUT ===== */
 .header {
   background-color: var(--header-bg);
   padding: 20px 0;
@@ -37,7 +35,6 @@
   align-items: center;
 }
 
-/* ===== LOGO STYLES ===== */
 .logo {
   font-size: 24px;
   font-weight: bold;
@@ -53,7 +50,6 @@
   color: var(--primary-hover);
 }
 
-/* ===== NAVIGATION STYLES ===== */
 .nav ul {
   display: flex;
   list-style: none;
@@ -77,14 +73,12 @@
   background-color: var(--bg-hover);
 }
 
-/* ===== AUTH BUTTONS STYLES ===== */
 .authButtons {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-/* Base button styles */
 .btn {
   padding: 8px 20px;
   border: 2px solid;
@@ -98,7 +92,6 @@
   justify-content: center;
 }
 
-/* Login button */
 .loginBtn {
   composes: btn;
   background: transparent;
@@ -111,7 +104,6 @@
   color: var(--white);
 }
 
-/* Register button */
 .registerBtn {
   composes: btn;
   background: var(--primary-accent);
@@ -124,7 +116,6 @@
   border-color: var(--primary-dark);
 }
 
-/* Logout button */
 .logoutBtn {
   composes: btn;
   background: transparent;
@@ -139,7 +130,6 @@
   color: var(--white);
 }
 
-/* ===== USER MENU STYLES ===== */
 .userMenu {
   display: flex;
   align-items: center;
@@ -152,7 +142,6 @@
   font-weight: 500;
 }
 
-/* Profile dropdown */
 .profileDropdown {
   position: relative;
   display: inline-block;
@@ -196,7 +185,6 @@
   background: linear-gradient(135deg, var(--primary-accent), var(--primary-hover));
 }
 
-/* Dropdown menu */
 .dropdownMenu {
   position: absolute;
   top: 100%;
@@ -247,10 +235,8 @@
   border-radius: 0 0 8px 8px;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
 
-/* Tablet */
-@media (max-width: 768px) {
+@media (max-width: 810px) {
   .header {
     padding: 16px 0;
   }
@@ -286,7 +272,6 @@
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .header {
     padding: 12px 0;
@@ -329,7 +314,6 @@
   }
 }
 
-/* Small mobile */
 @media (max-width: 360px) {
   .nav {
     display: none;
@@ -340,9 +324,7 @@
   }
 }
 
-/* ===== MOBILE MENU STYLES ===== */
 
-/* Burger Button */
 .burgerButton {
   display: none;
   flex-direction: column;
@@ -365,7 +347,6 @@
   transform-origin: center;
 }
 
-/* Mobile Menu */
 .mobileMenu {
   position: absolute;
   top: 100%;
@@ -417,7 +398,6 @@
   padding-left: 24px;
 }
 
-/* ===== MOBILE HEADER CONTROLS ===== */
 .mobileHeaderControls {
   display: none;
   align-items: center;
@@ -442,9 +422,7 @@
   color: var(--white);
 }
 
-/* ===== MOBILE MENU STYLES ===== */
 
-/* Burger Button */
 .burgerButton {
   display: none;
   flex-direction: column;
@@ -467,7 +445,6 @@
   transform-origin: center;
 }
 
-/* Mobile Menu */
 .mobileMenu {
   position: absolute;
   top: 100%;
@@ -519,7 +496,6 @@
   padding-left: 24px;
 }
 
-/* Mobile Registration Section */
 .mobileRegistration {
   padding: 20px;
   text-align: center;
@@ -547,7 +523,6 @@
   color: var(--primary-hover);
 }
 
-/* Overlay */
 .overlay {
   position: fixed;
   top: 0;
@@ -558,10 +533,7 @@
   z-index: 998;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-
-/* Tablet */
-@media (max-width: 768px) {
+@media (max-width: 810px) {
   .nav {
     display: none;
   }
@@ -579,7 +551,6 @@
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .mobileHeaderControls {
     gap: 8px;
@@ -605,7 +576,6 @@
   }
 }
 
-/* Small mobile */
 @media (max-width: 360px) {
   .mobileHeaderControls {
     gap: 6px;
@@ -631,7 +601,6 @@
   }
 }
 
-/* Burger animation when menu is open */
 .burgerButton.active .burgerLine:nth-child(1) {
   transform: rotate(45deg) translate(4px, 4px);
 }
@@ -644,7 +613,6 @@
   transform: rotate(-45deg) translate(4px, -4px);
 }
 
-/* ===== MOBILE USER INFO ===== */
 .mobileUserInfo {
   display: flex;
   align-items: center;
@@ -660,7 +628,6 @@
   max-width: 100px;
 }
 
-/* ===== MOBILE LOGOUT STYLES ===== */
 .mobileLogoutItem {
   margin: 0;
   border-bottom: 1px solid var(--border-accent);
@@ -687,10 +654,8 @@
   color: var(--danger-color);
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
 
-/* Tablet */
-@media (max-width: 768px) {
+@media (max-width: 810px) {
   .nav {
     display: none;
   }
@@ -708,7 +673,6 @@
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .mobileHeaderControls {
     gap: 8px;
@@ -744,7 +708,6 @@
   }
 }
 
-/* Small mobile */
 @media (max-width: 360px) {
   .mobileHeaderControls {
     gap: 6px;

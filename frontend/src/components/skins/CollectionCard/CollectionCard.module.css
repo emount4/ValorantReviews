@@ -4,11 +4,10 @@
   max-width: 100%;
   box-sizing: border-box;
   transition: all 0.3s ease;
-  position: relative; /* Добавляем для позиционирования загрузки */
+  position: relative; 
 }
 
 .card.compact {
-  /* Стили для компактной версии */
   transform: scale(1);
   transform-origin: center;
 }
@@ -32,7 +31,7 @@
   background-color: var(--dark-surface);
   box-shadow: 0 0 8px var(--dark-overlay);
   transition: all 0.3s ease;
-  height: 100%; /* Занимает всю высоту карточки */
+  height: 100%; 
 }
 
 .image {
@@ -42,8 +41,8 @@
   display: block;
   background-color: var(--dark-background);
   flex-shrink: 0;
-  position: relative; /* Для z-index */
-  z-index: 2; /* Картинка поверх загрузки */
+  position: relative; 
+  z-index: 2; 
 }
 
 .imageLoading {
@@ -51,7 +50,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 180px; /* Такая же высота как у изображения */
+  height: 180px; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,11 +58,10 @@
   color: var(--placeholder-text);
   font-size: 1rem;
   font-weight: 500;
-  z-index: 1; /* Под картинкой */
-  border-radius: 6px 6px 0 0; /* Совпадает с border-radius imageBox */
+  z-index: 1;
+  border-radius: 6px 6px 0 0; 
 }
 
-/* Состояние, когда картинка загрузилась */
 .image.loaded + .imageLoading {
   opacity: 0;
   visibility: hidden;
@@ -80,8 +78,8 @@
   border-top: 1px solid var(--border-accent);
   min-height: 60px;
   box-sizing: border-box;
-  position: relative; /* Для z-index */
-  z-index: 3; /* Над всем */
+  position: relative; 
+  z-index: 3;
 }
 
 .ratingBox {
@@ -124,7 +122,6 @@
   color: var(--primary-accent);
 }
 
-/* Анимация загрузки */
 .imageLoading::after {
   content: '';
   width: 20px;
@@ -141,7 +138,6 @@
   100% { transform: rotate(360deg); }
 }
 
-/* ------- Адаптивные стили ------- */
 @media (max-width: 900px) {
   .image {
     height: 160px;
@@ -182,7 +178,6 @@
   }
 }
 
-/* Стили для компактной версии */
 .card.compact .image {
   height: 80px;
 }
@@ -214,7 +209,6 @@
   box-shadow: 0 6px 15px rgba(255, 70, 85, 0.3);
 }
 
-/* Стили для круглой версии */
 .card.circular .imageBox {
   border-radius: 50%;
   border: 2px solid var(--border-accent);
@@ -246,7 +240,7 @@
 }
 
 .card.circular .ratingBox {
-  display: none; /* Скрываем рейтинг для круглых карточек */
+  display: none; 
 }
 
 .card.circular:hover .imageBox {
@@ -254,7 +248,6 @@
   box-shadow: 0 4px 12px rgba(255, 70, 85, 0.3);
 }
 
-/* Адаптивность для круглых карточек */
 @media (max-width: 1200px) {
   .card.circular .image {
     height: 55px;
@@ -287,6 +280,84 @@
   .card.circular .bottomBar {
     min-height: 22px;
     padding: 2px 4px;
+  }
+  
+  .card.circular .title {
+    font-size: 0.6rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .card {
+    min-width: 0; 
+  }
+  
+  .image {
+    height: 120px; 
+  }
+  
+  .imageLoading {
+    height: 120px;
+    font-size: 0.8rem;
+  }
+  
+  .bottomBar {
+    padding: 8px;
+    min-height: 50px;
+  }
+  
+  .title {
+    font-size: 0.9rem;
+  }
+  
+  .ratingBox {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .image {
+    height: 100px;
+  }
+  
+  .imageLoading {
+    height: 100px;
+  }
+  
+  .bottomBar {
+    padding: 6px;
+    min-height: 45px;
+  }
+  
+  .title {
+    font-size: 0.85rem;
+    margin-left: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card.compact .image {
+    height: 60px;
+  }
+  
+  .card.compact .imageLoading {
+    height: 60px;
+  }
+  
+  .card.compact .title {
+    font-size: 0.7rem;
+  }
+  
+  .card.circular .image {
+    height: 40px;
+  }
+  
+  .card.circular .imageLoading {
+    height: 40px;
   }
   
   .card.circular .title {

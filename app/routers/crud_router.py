@@ -66,9 +66,42 @@ async def get_table_row_count(
         raise HTTPException(status_code=400, detail=result["message"])
     return result
 
+# @router.get("/collections")
+# async def get_collections(
+#     skip: int = 0,
+#     limit: int = 12,
+#     search: str = None
+# ):
+#     resp = crud.get_table_data("Collections", limit)  # реализуйте нужный метод получения всех коллекций
+#     if resp["status"] != "success":
+#         return []
+#     return resp["data"]
+
 @router.get("/collections")
-async def get_collections():
-    resp = crud.get_table_data("Collections", 1000)  # реализуйте нужный метод получения всех коллекций
-    if resp["status"] != "success":
-        return []
-    return resp["data"]
+async def get_collections(
+        page: int = 1,
+        limit: int = 12,
+        search: str = None
+):
+    """Получить коллекции с пагинацией и поиском"""
+    try:
+        filters = {}
+        if search and search.strip():
+            filters["display_name"] = f"%{search.strip()}%"
+
+        result = crud.get_table_data_paginated("Collections", page, limit, filters)
+
+        if result["status"] != "success":
+            return {"collections": [], "total": 0, "has_more": False, "page": page}
+
+        return {
+            "collections": result["data"],
+            "total": result["total"],
+            "has_more": result["has_more"],
+            "page": page,
+            "limit": limit
+        }
+
+    except Exception as e:
+        logging.error(f"Error getting collections: {e}")
+        return {"collections": [], "total": 0, "has_more": False, "page": page}

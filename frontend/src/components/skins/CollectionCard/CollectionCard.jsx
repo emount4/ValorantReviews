@@ -37,7 +37,6 @@ const CollectionCard = ({ title, imageUrl, id, compact = false, circular = false
         return imageUrl;
     };
 
-    // Определяем классы в зависимости от пропсов
     const cardClass = compact ? 
         (circular ? `${styles.card} ${styles.compact} ${styles.circular}` : `${styles.card} ${styles.compact}`) 
         : styles.card;

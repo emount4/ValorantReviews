@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "./dataCard.module.css";
 import { useAuth } from "../../../../context/AuthContext";
-import UserStats from "./UserStats"; // Импортируем компонент статистики
+import UserStats from "./UserStats"; 
 
 const DataCard = () => {
   const { user } = useAuth();

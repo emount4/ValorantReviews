@@ -6,7 +6,6 @@
   color: var(--light-text);
 }
 
-/* Десктоп версия */
 .desktopLayout {
   display: flex;
   gap: 16px;
@@ -26,7 +25,6 @@
   gap: 20px;
 }
 
-/* Техника 1: Базовое адаптивное изображение */
 .photoPlaceholder img {
   width: 100%;
   height: 100%;
@@ -35,7 +33,6 @@
   border-radius: inherit;
 }
 
-/* Техника 2: Стили для picture element */
 .photoPlaceholder picture {
   width: 100%;
   height: 100%;
@@ -66,22 +63,18 @@
   box-sizing: border-box; 
 }
 
-/* Панель кнопок - АДАПТИВНАЯ */
 .tabsContainer {
   display: flex;
   gap: 10px;
-  /* background: var(--dark-surface);
-  border: 1px solid var(--border-accent);
-  border-radius: var(--border-radius-md); */
   padding: 6px;
-  min-width: 0; /* Важно для предотвращения переполнения */
-  flex-wrap: wrap; /* Разрешаем перенос на маленьких экранах */
-  justify-content: center; /* Центрируем кнопки */
+  min-width: 0; 
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .tabButton {
   flex: 1;
-  min-width: 0; /* Разрешаем сжатие */
+  min-width: 0; 
   padding: 10px 12px;
   background: transparent;
   border: 2px solid var(--border-accent);
@@ -116,7 +109,6 @@
   flex: 1;
 }
 
-/* Мобильная версия */
 .mobileLayout {
   display: none;
   flex-direction: column;
@@ -144,14 +136,12 @@
   text-decoration: underline;
 }
 
-/* Медиа-запрос для 860px - сокращаем названия */
 @media (max-width: 860px) {
   .tabButton {
     font-size: 0.8rem;
     padding: 8px 10px;
   }
   
-  /* Сокращенные тексты для десктопной версии */
   .desktopLayout .tabButton:nth-child(1)::after {
     content: "Избранные";
   }
@@ -162,7 +152,6 @@
     content: "Лайки";
   }
   
-  /* Скрываем оригинальный текст в десктопной версии */
   .desktopLayout .tabButton span {
     display: none;
   }
@@ -176,7 +165,6 @@
   .mobileLayout {
     display: flex;
     margin: 20px auto;
-    padding: 0 15px;
     gap: 20px;
   }
   
@@ -187,7 +175,7 @@
   .tabsContainer {
     padding: 4px;
     gap: 4px;
-    justify-content: stretch; /* Растягиваем на всю ширину */
+    justify-content: stretch; 
   }
   
   .tabButton {
@@ -197,10 +185,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1; /* Занимают равное пространство */
+    flex: 1; 
   }
   
-  /* Для мобильной версии используем короткие тексты */
   .mobileLayout .tabButton:nth-child(1)::after {
     content: "Избранные";
   }
@@ -227,7 +214,6 @@
   }
   
   
-  /* Еще более короткие тексты */
   .tabButton:nth-child(1)::after {
     content: "Избр.";
   }
@@ -254,32 +240,20 @@
     min-height: 32px;
   }
   
-  /* Минимальные тексты */
-  .tabButton:nth-child(1)::after {
-    content: "★";
-  }
-  .tabButton:nth-child(2)::after {
-    content: "📝";
-  }
-  .tabButton:nth-child(3)::after {
-    content: "❤️";
-  }
 }
 
-/* Гарантия что не будет горизонтального скролла */
 .tabsContainer {
   max-width: 100%;
   box-sizing: border-box;
 }
 
-/* Фикс для центровки на очень маленьких экранах */
 @media (max-width: 360px) {
   .tabsContainer {
-    justify-content: space-around; /* Равномерное распределение */
+    justify-content: space-around; 
   }
   
   .tabButton {
-    flex: 0 0 30%; /* Фиксированная ширина для равного распределения */
+    flex: 0 0 30%; 
     min-width: 0;
   }
 }

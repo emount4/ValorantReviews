@@ -70,8 +70,6 @@ main {
   width: 100%;
 }
 
-/* Добавьте в соответствующие module.css файлы */
-
 .imageLoading, .mediaLoading {
   display: flex;
   align-items: center;
